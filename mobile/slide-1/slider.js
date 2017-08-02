@@ -62,7 +62,7 @@ Slider.prototype.bindDOM = function(){
   //手指按下的处理事件
   let startHandler = function(event){
     //记录刚刚开始按下的时间戳
-    self.startTime = new Date() * 1;
+    self.startTime = new Date().getTime();
     //记录手指按下的坐标
     self.startX = event.touches[0].pageX;
     //清除偏移量
@@ -99,7 +99,7 @@ Slider.prototype.bindDOM = function(){
     //边界翻页值
     let boundary = self.scaleW / 3;
     //手指抬起的时间戳
-    let endTime = new Date() * 1;
+    let endTime = new Date().getTime();
 
     //当手指移动时间超过300ms 的时候，按位移算
     if(endTime - self.startTime > 300){
@@ -159,7 +159,7 @@ Slider.prototype.goIndex = function(n){
   lis[cidx + 1] && (lis[cidx + 1].style.webkitTransition = `-webkit-transform ${self.transTime} ${self.transFn}`);
 
   //改变动画后所应该的位移值
-  lis[cidx].style.webkitTransform = 'translateX(0px)';
+  lis[cidx].style.webkitTransform = 'translateX(0)';
   lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = `translateX(-${this.scaleW}px)`);
   lis[cidx + 1] && (lis[cidx + 1].style.webkitTransform = `translateX(${this.scaleW}px)`);
 };
