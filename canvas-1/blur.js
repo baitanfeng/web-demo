@@ -29,17 +29,19 @@ image.onload = function(){
   topMargin = (image.height - canvas.height) / 2;
 
   $('#blur-image').css({
-    top: `-${topMargin}px`,
-    left: `-${leftMargin}px`
+    top: `${-topMargin}px`,
+    left: `${-leftMargin}px`
   });
 
   initCanvas();
 };
 
 function initCanvas(){
+  let theLeft = leftMargin < 0 ? -leftMargin : 0;
+  let theTop = topMargin < 0 ? -topMargin : 0;
   clippingRegion = {
-    x: Math.random() * (canvas.width - radius * 2) + radius,
-    y: Math.random() * (canvas.height - radius * 2) + radius,
+    x: Math.random() * (canvas.width - radius * 2 - theLeft * 2) + radius + theLeft,
+    y: Math.random() * (canvas.height - radius * 2 - theTop * 2) + radius + theTop,
     r: radius
   };
   draw(image, clippingRegion);
@@ -51,8 +53,10 @@ function draw(image, clippingRegion){
   context.save();
   setClippingRegion(clippingRegion);
   context.drawImage(image,
-    leftMargin, topMargin, canvas.width, canvas.height,
-    0, 0, canvas.width, canvas.height);
+    Math.max(leftMargin, 0), Math.max(topMargin, 0),
+    Math.min(canvas.width, image.width), Math.min(canvas.height, image.height),
+    leftMargin < 0 ? -leftMargin : 0, topMargin < 0 ? -topMargin : 0,
+    Math.min(canvas.width, image.width), Math.min(canvas.height, image.height));
   context.restore();
 }
 
