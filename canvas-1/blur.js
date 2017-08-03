@@ -7,6 +7,7 @@ window.onload = function(){
 
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
+  canvas.addEventListener('touchstart', e => e.preventDefault(), false);
 
   let radius = 50;
   let clippingRegion = {x: -1, y: -1, r: radius};
@@ -16,19 +17,19 @@ window.onload = function(){
   let image = new Image();
   image.src = "image.jpg";
   image.onload = function(){
-    let blurDiv=document.getElementById('blur-div');
-    blurDiv.style.width=`${canvas.width}px`;
-    blurDiv.style.height=`${canvas.height}px`;
+    let blurDiv = document.getElementById('blur-div');
+    blurDiv.style.width = `${canvas.width}px`;
+    blurDiv.style.height = `${canvas.height}px`;
 
-    let blurImage=document.getElementById('blur-image');
-    blurImage.style.width=`${image.width}px`;
-    blurImage.style.height=`${image.height}px`;
+    let blurImage = document.getElementById('blur-image');
+    blurImage.style.width = `${image.width}px`;
+    blurImage.style.height = `${image.height}px`;
 
     leftMargin = (image.width - canvas.width) / 2;
     topMargin = (image.height - canvas.height) / 2;
 
-    blurImage.style.top=`${-topMargin}px`;
-    blurImage.style.left=`${-leftMargin}px`;
+    blurImage.style.top = `${-topMargin}px`;
+    blurImage.style.left = `${-leftMargin}px`;
 
     initCanvas();
   };
