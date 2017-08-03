@@ -47,25 +47,29 @@ html, body {
   color: #ffffff;
   text-decoration: none;
   text-align: center;
+  border: none;
   border-radius: 5px;
+  outline: none;
 
   z-index: 300;
 }
 
-#reset-button{
+#reset-button {
   left: 50px;
   bottom: 20px;
   background-color: #005588;
 }
-#reset-button:hover{
+
+#reset-button:hover {
   background-color: #004477;
 }
 
-#show-button{
+#show-button {
   right: 50px;
   bottom: 20px;
   background-color: #085;
 }
-#show-button:hover{
+
+#show-button:hover {
   background-color: #074;
 }
