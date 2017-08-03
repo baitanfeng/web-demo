@@ -50,11 +50,9 @@ window.onload = function(){
 
     context.save();
     setClippingRegion(clippingRegion);
-    context.drawImage(image,
-      Math.max(leftMargin, 0), Math.max(topMargin, 0),
-      Math.min(canvas.width, image.width), Math.min(canvas.height, image.height),
-      leftMargin < 0 ? -leftMargin : 0, topMargin < 0 ? -topMargin : 0,
-      Math.min(canvas.width, image.width), Math.min(canvas.height, image.height));
+    let dx = canvas.width / 2 - image.width / 2,
+      dy = canvas.height / 2 - image.height / 2;
+    context.drawImage(image, dx, dy, image.width, image.height);
     context.restore();
   }
 
@@ -77,7 +75,7 @@ window.onload = function(){
   function show(){
     interval = setInterval(function(){
       clippingRegion.r += 15;
-      if(clippingRegion.r > Math.max(canvas.width, canvas.height) * 2){
+      if(clippingRegion.r > Math.max(canvas.width, canvas.height) * 2) {
         clearInterval(interval);
       }
       draw(image, clippingRegion);
