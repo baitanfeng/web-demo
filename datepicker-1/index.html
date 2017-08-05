@@ -7,14 +7,13 @@
 </head>
 <body>
 
-<div class="ui-datepicker-wrapper">
+<input type="text" class="datepicker"/>
 
-</div>
-
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
+<script src="js/datepicker.js"></script>
 <script>
-  window.datepicker.init(document.querySelector('.ui-datepicker-wrapper'));
+  window.onload=function(){
+    datepicker.init('.datepicker');
+  };
 </script>
 </body>
 </html>
