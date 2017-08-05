@@ -15,28 +15,35 @@
 
     let date = 0,
       showDate = 0,
+      isCurrMonth = true,
       showDayCountPrevMonth = firstDayCurrMonth - 1;
-    for(let i = 0; i < 42; i++){
+    for(let i = 0; i < 42; i++) {
       date = -showDayCountPrevMonth + i + 1;
 
       showDate = date;
-      if(date <= 0){
+      isCurrMonth = true;
+      if(date <= 0) {
         //prev month
+        isCurrMonth = false;
         showDate = date + lastDateDatePrevMonth;
-      }else if(date > lastDateDateCurrMonth){
+      } else if(date > lastDateDateCurrMonth) {
         //next month
+        isCurrMonth = false;
         showDate = date - lastDateDateCurrMonth;
       }
 
-      ret.push({date: date, showDate: showDate});
+      ret.push({
+        date: date,
+        showDate: showDate,
+        isCurrMonth: isCurrMonth
+      });
     }
 
-    return ret;
-  };
-
-  datepicker.init = function(year, month){
-    let monthData = datepicker.getMonthData();
-    console.log(monthData);
+    return {
+      year: year,
+      month: month,
+      days: ret
+    };
   };
 
   window.datepicker = datepicker;

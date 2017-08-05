@@ -37,7 +37,8 @@
       border: 1px solid transparent; }
     .ui-datepicker-wrapper .ui-datepicker-body table th, .ui-datepicker-wrapper .ui-datepicker-body table td {
       height: 30px;
-      text-align: center; }
+      text-align: center;
+      color: #000000; }
     .ui-datepicker-wrapper .ui-datepicker-body table th {
       font-size: 12px;
       height: 40px;
@@ -49,5 +50,7 @@
       cursor: pointer; }
       .ui-datepicker-wrapper .ui-datepicker-body table td:hover {
         border-color: #ccc; }
+      .ui-datepicker-wrapper .ui-datepicker-body table td.mute {
+        color: #ccc; }
 
 /*# sourceMappingURL=index.css.map */
