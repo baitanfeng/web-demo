@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>proload</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .box {
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #cccccc;
+      background-color: #fff;
+      padding: 0 10px;
+      margin-right: 50px;
+      color: #333333;
+    }
+
+    .btn:hover {
+      background-color: #eeeeee;
+    }
+
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #eeeeee;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .progress {
+      margin-top: 300px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <img
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502599671&di=d6635722b348176368ec4ef4163b8a5a&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.33lc.com%2Farticle%2FUploadPic%2F2012-7%2F20127291061564636.jpg"
+      alt="pic" id="img" width="1200">
+  <p>
+    <a href="javascript:;" class="btn" data-control="prev">上一页</a>
+    <a href="javascript:;" class="btn" data-control="next">下一页</a>
+  </p>
+</div>
+
+<div class="loading">
+  <p class="progress">0%</p>
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/preload.js"></script>
+<script>
+  let imgs = [
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502599671&di=d6635722b348176368ec4ef4163b8a5a&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.33lc.com%2Farticle%2FUploadPic%2F2012-7%2F20127291061564636.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502005552476&di=96f6c04d3adbddef94cce2ac6550b7db&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Flxy%2F12%2F27%2F2%2F9.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502005552475&di=258d3bdd02963525255219f73e94e057&imgtype=0&src=http%3A%2F%2Fimg.warting.com%2Fallimg%2F2015%2F1130%2Fc1kzr5hewbh-2978.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502005552475&di=f6d1d683ffb4e765a3d9c1be8c2be16d&imgtype=0&src=http%3A%2F%2Fbizhi.zhuoku.com%2F2010%2F03%2F20%2FNature%2Ffengguang10.jpg'
+  ];
+
+  let index = 0,
+    len = imgs.length,
+    $process = $('.progress');
+
+  $.preload(imgs, {
+    each: function(count){
+      $process.html(`${Math.round((count + 1) / len * 100)}%`);
+    },
+    all: function(){
+      $('.loading').hide();
+    }
+  });
+
+  $('.btn').on('click', function(e){
+    e.stopPropagation();
+    if($(this).data('control') === 'prev'){
+      //prev image
+      index = Math.max(0, --index);
+    }else{
+      //next image
+      index = Math.min(len - 1, ++index);
+    }
+    $('#img').attr('src', imgs[index]);
+  });
+</script>
+</body>
+</html>
