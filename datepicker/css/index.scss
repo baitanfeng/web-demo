@@ -1,17 +1,14 @@
 @import "base";
 @import "datepicker";
-
-.datepicker{
-  border:1px solid #cccccc;
-  border-radius: 2px;
-  padding: 5px;
-  width: 240px;
-  height: 24px;
-  line-height: 24px;
-  outline: none;
-  &:focus{
-    border-color: #1abc9c;
-  }
+.datepicker {
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+    padding: 5px;
+    width: 240px;
+    height: 24px;
+    line-height: 24px;
+    outline: none;
+    &:focus {
+        border-color: #1abc9c;
+    }
 }
-
-
