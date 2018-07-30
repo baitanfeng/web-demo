@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+body>header {
+  position: sticky;
+  top: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
+  background: orangered;
+}
+
+.chatbox {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  height: 300px;
+  width: 200px;
+  border: 1px solid orangered;
+  background: white;
+}
+
+.messages {
+  height: 220px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.me,
+.you {
+  background: orangered;
+  padding: 10px;
+  margin: 10px;
+}
+
+.me {
+  text-align: right;
+  background: #eee;
+}
+
+.you {
+  background: #bbb;
+}
+
+form {
+  display: flex;
+}
+
+form input {
+  width: 70%;
+}
+
+form button {
+  width: 30%;
+}
