@@ -1,12 +1,13 @@
 const refreshContainer = document.querySelector('.refresh-container')
 const refreshText = document.querySelector('.refresh-text')
 const loadmoreText = document.querySelector('.loadmore-text')
+
 const containerStyle = refreshContainer.style
 
 const frag = document.createDocumentFragment()
 for (let i = 0; i < 50; i++) {
   const li = document.createElement('li')
-  li.innerText = `element ${i + 1}`
+  li.innerText = `${i + 1}`
   frag.appendChild(li)
 }
 refreshContainer.appendChild(frag)
