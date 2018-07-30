@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.refresh-text {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  left: 0;
+  top: 0;
+}
+
+.refresh-container {
+  position: relative;
+  background: orangered;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.loadmore-text {
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
