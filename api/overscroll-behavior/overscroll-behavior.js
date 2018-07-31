@@ -1,7 +1,7 @@
 // generate fake contacts
 const main = document.querySelector('.main')
-const frag = document.createDocumentFragment()
 
+const frag = document.createDocumentFragment()
 for (let i = 0; i < 50; i++) {
   const div = document.createElement('div')
   const p = document.createElement('p')
@@ -9,7 +9,6 @@ for (let i = 0; i < 50; i++) {
   div.appendChild(p)
   frag.appendChild(div)
 }
-
 main.appendChild(frag)
 
 const form = document.querySelector('form')
