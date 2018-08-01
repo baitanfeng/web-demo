@@ -1,0 +1,31 @@
+div {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 16px;
+  padding: 16px;
+  background: #ddd;
+}
+
+div.background-clip {
+  background: orange;
+  background-clip: content-box;
+  border: 16px dashed indigo;
+}
+
+div.pseudo {
+  background: white;
+  background-clip: padding-box;
+  border: 16px dashed indigo;
+}
+
+div.pseudo::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  right: -16px;
+  top: -16px;
+  bottom: -16px;
+  background: orangered;
+  z-index: -1;
+}
