@@ -1,0 +1,12 @@
+.grid.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 50px 350px 50px;
+  gap: 8px;
+  padding: 8px;
+  background: orange;
+}
+
+.grid-item {
+  background: orangered;
+}
