@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 200px;
+  height: 100%;
+  background: orange;
+}
+
+.container::after {
+  content: 'pseudo element'
+}
