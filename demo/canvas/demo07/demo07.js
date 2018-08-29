@@ -1,0 +1,12 @@
+const canvas = document.querySelector('#canvas')
+const ctx = canvas.getContext('2d')
+
+ctx.beginPath()
+ctx.arc(100, 50, 40, 0, 2 * Math.PI)
+ctx.moveTo(125, 50)
+ctx.arc(100, 50, 25, 0, Math.PI)
+ctx.moveTo(90, 35)
+ctx.arc(85, 35, 5, 0, 2 * Math.PI)
+ctx.moveTo(120, 35)
+ctx.arc(115, 35, 5, 0, 2 * Math.PI)
+ctx.stroke()
