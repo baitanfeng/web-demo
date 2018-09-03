@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-  let blurDiv = document.querySelector('#blur-div')
-  let blurImage = document.querySelector('#blur-image')
-  let canvas = document.querySelector('#canvas')
-  let context = canvas.getContext('2d')
+  const blurWrap = document.querySelector('#blur-wrap')
+  const blurImage = document.querySelector('#blur-image')
+  const canvas = document.querySelector('#canvas')
+  const ctx = canvas.getContext('2d')
 
-  let wWidth = 0,
-    wHeight = 0,
-    radius = 50,
+  let width = 0,
+    height = 0,
+    r = 50,
     clippingRegion = {
       x: -1,
       y: -1,
-      r: radius
+      r: r
     },
     leftMargin = 0,
     topMargin = 0
@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
   init()
 
   function init() {
-    wWidth = window.innerWidth
-    wHeight = window.innerHeight
+    width = window.innerWidth
+    height = window.innerHeight
 
-    blurDiv.style.width = `${wWidth}px`
-    blurDiv.style.height = `${wHeight}px`
+    blurWrap.style.width = `${width}px`
+    blurWrap.style.height = `${height}px`
 
-    canvas.width = wWidth
-    canvas.height = wHeight
+    canvas.width = width
+    canvas.height = height
   }
 
   let image = new Image()
@@ -63,32 +63,32 @@ document.addEventListener('DOMContentLoaded', function() {
     let theLeft = leftMargin < 0 ? -leftMargin : 0
     let theTop = topMargin < 0 ? -topMargin : 0
     clippingRegion = {
-      x: Math.random() * (canvas.width - radius * 2 - theLeft * 2) + radius + theLeft,
-      y: Math.random() * (canvas.height - radius * 2 - theTop * 2) + radius + theTop,
-      r: radius
+      x: Math.random() * (canvas.width - r * 2 - theLeft * 2) + r + theLeft,
+      y: Math.random() * (canvas.height - r * 2 - theTop * 2) + r + theTop,
+      r: r
     }
     draw(image, clippingRegion)
   }
 
   function draw(image, clippingRegion) {
-    context.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    context.save()
+    ctx.save()
     setClippingRegion(clippingRegion)
     let dx = canvas.width / 2 - image.width / 2,
       dy = canvas.height / 2 - image.height / 2
-    context.drawImage(image, dx, dy, image.width, image.height)
-    context.restore()
+    ctx.drawImage(image, dx, dy, image.width, image.height)
+    ctx.restore()
   }
 
   function setClippingRegion(clippingRegion) {
-    context.beginPath()
-    context.arc(clippingRegion.x, clippingRegion.y, clippingRegion.r, 0, Math.PI * 2, false)
-    context.clip()
+    ctx.beginPath()
+    ctx.arc(clippingRegion.x, clippingRegion.y, clippingRegion.r, 0, Math.PI * 2, false)
+    ctx.clip()
   }
 
-  document.querySelector('#reset-button').addEventListener('click', reset)
-  document.querySelector('#show-button').addEventListener('click', show)
+  document.querySelector('#reset').addEventListener('click', reset)
+  document.querySelector('#show').addEventListener('click', show)
 
   let interval
 
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function show() {
-    if (clippingRegion.r > radius) return
+    if (clippingRegion.r > r) return
 
     interval = setInterval(function() {
       clippingRegion.r += 15

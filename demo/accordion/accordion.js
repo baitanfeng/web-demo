@@ -1,8 +1,9 @@
-let acc = document.querySelectorAll(".accordion-title");
+const acc = document.querySelectorAll(".accordion-title");
+
 for (let i = 0, len = acc.length; i < len; i++) {
-  acc[i].onclick = function () {
+  acc[i].onclick = function() {
     this.classList.toggle("active");
-    let panel = this.nextElementSibling;
+    const panel = this.nextElementSibling;
     panel.classList.toggle("active");
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
@@ -12,9 +13,13 @@ for (let i = 0, len = acc.length; i < len; i++) {
   }
 }
 
-window.onresize = function () {
-  let panel = document.querySelectorAll(".accordion-body.active");
-  panel.forEach(item => {
+window.onresize = function() {
+  window.requestAnimationFrame(handleResize)
+}
+
+function handleResize() {
+  const panels = document.querySelectorAll(".accordion-body.active");
+  panels.forEach(item => {
     item.style.maxHeight = `${item.scrollHeight}px`
   });
 }
