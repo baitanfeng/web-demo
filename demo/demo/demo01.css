@@ -14,11 +14,11 @@ div.border {
 
 div.pseudo::before {
   content: '';
-  width: 5px;
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
+  width: 5px;
   background: deeppink;
 }
 
