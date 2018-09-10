@@ -1,3 +1,13 @@
+const dropZone = document.querySelector('.drop-zone')
+dropZone.addEventListener('dragover', handleDragOver, false)
+dropZone.addEventListener('drop', handleFileSelect, false)
+
+function handleDragOver(evt) {
+  evt.stopPropagation()
+  evt.preventDefault()
+  evt.dataTransfer.dropEffect = 'copy'
+}
+
 function handleFileSelect(evt) {
   evt.stopPropagation()
   evt.preventDefault()
@@ -5,7 +15,7 @@ function handleFileSelect(evt) {
   const files = evt.dataTransfer.files
   const ul = document.createElement('ul')
 
-  for (let i = 0; i < files.length; i++) {
+  for (let i = 0, len = files.length; i < len; i++) {
     const li = document.createElement('li')
     const file = files[i]
     li.innerHTML = `name: ${file.name}, size: ${file.size}, type: ${file.type}`
@@ -14,13 +24,3 @@ function handleFileSelect(evt) {
 
   document.querySelector('.output').appendChild(ul)
 }
-
-function handleDragOver(evt) {
-  evt.stopPropagation()
-  evt.preventDefault()
-  evt.dataTransfer.dropEffect = 'copy'
-}
-
-const dropZone = document.querySelector('.drop-zone')
-dropZone.addEventListener('dragover', handleDragOver, false)
-dropZone.addEventListener('drop', handleFileSelect, false)

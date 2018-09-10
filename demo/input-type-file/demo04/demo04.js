@@ -1,5 +1,14 @@
 const output = document.querySelector('.output')
 
+document.querySelector('.read-byte-btn-wrap').addEventListener('click', function(evt) {
+  const target = evt.target
+  if (target.tagName.toLowerCase() === 'button') {
+    const start = target.getAttribute('data-startbyte')
+    const end = target.getAttribute('data-endbyte')
+    readBlob(start, end)
+  }
+}, false)
+
 function readBlob(start, end) {
   const files = document.querySelector('#files').files
 
@@ -19,14 +28,8 @@ function readBlob(start, end) {
     }
   }
   const blob = file.slice(start, end + 1)
-  reader.readAsBinaryString(blob)
+    // reader.readAsBinaryString(blob)
+    // reader.readAsArrayBuffer(blob)
+    // reader.readAsText(blob)
+  reader.readAsDataURL(blob)
 }
-
-document.querySelector('.read-byte-btn-wrap').addEventListener('click', function(evt) {
-  const target = evt.target
-  if (target.tagName.toLowerCase() === 'button') {
-    const start = target.getAttribute('data-startbyte')
-    const end = target.getAttribute('data-endbyte')
-    readBlob(start, end)
-  }
-}, false)
