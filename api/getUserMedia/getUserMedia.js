@@ -7,7 +7,6 @@ function handleButtonClick(evt) {
     audio: true,
     video: true
   }
-  debugger
 
   navigator.mediaDevices.getUserMedia(constraints).then(ms => {
     alert(ms.toString())
