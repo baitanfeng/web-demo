@@ -5,7 +5,7 @@ fileEle.addEventListener('change', event => {
   const reader = new FileReader()
   reader.addEventListener('load', e => {
     const img = new Image()
-    img.src = e.target.result
+    img.src = reader.result
     fileEle.insertAdjacentElement('afterend', img)
   })
   reader.readAsDataURL(file)
