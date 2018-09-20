@@ -9,11 +9,13 @@ function checkReading() {
   checkReading.read = this.scrollHeight - this.scrollTop === this.clientHeight
   accept.disabled = !checkReading.read
   nextstep.disabled = !checkReading.read
-  notice.innerHTML = checkReading.read ? 'Thank you.' : 'Please, scroll and read the following text.'
+  notice.innerHTML = checkReading.read
+    ? 'Thank you.'
+    : 'Please, scroll and read the following text.'
 }
 
-window.onload = function () {
-  let rules = document.getElementById('rules')
+window.onload = function() {
+  const rules = document.querySelector('#rules')
   rules.onscroll = checkReading
   checkReading.call(rules)
 }
