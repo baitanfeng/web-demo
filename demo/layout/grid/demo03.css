@@ -1,0 +1,14 @@
+.display-grid {
+  display: grid;
+  grid: 150px / auto auto auto;
+  grid-gap: 10px;
+  background-color: orangered;
+  padding: 10px;
+}
+
+.item {
+  background-color: orange;
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+}
