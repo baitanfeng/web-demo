@@ -1,3 +1,9 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
 /* 
 Chrome、Safari等浏览器，当表单提交用户选择记住密码后，
 下次自动填充表单的背景变成黄色，影响了视觉体验是否可以修改？ 
@@ -5,8 +11,8 @@ Chrome、Safari等浏览器，当表单提交用户选择记住密码后，
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  background-color: #fff; //设置成元素原本的颜色
-  background-image: none;
-  color: rgb(0, 0, 0);
-  -webkit-box-shadow: 0px 0 3px 100px #ccc inset; //背景色
+	background-color: #fff; //设置成元素原本的颜色
+	background-image: none;
+	color: rgb(0, 0, 0);
+	-webkit-box-shadow: 0px 0 3px 100px #ccc inset; //背景色
 }
