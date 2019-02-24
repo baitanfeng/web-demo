@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+    }
+
+    .outer {
+      border: 1px solid violet;
+    }
+
+    .inner {
+      background-color: orangered;
+      border-radius: 30% 70% 70% 30% / 70% 70% 30% 30%;
+    }
+
+    .ellipse {
+      border-radius: 50% / 100% 100% 0 0;
+      background: orangered;
+    }
+
+    .ellipse2 {
+      border-radius: 100% 0 0 100% / 50%;
+      background: orangered;
+    }
+
+    .ellipse3 {
+      border-radius: 100% 0 0 0;
+      background: orangered;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer">
+    <div class="inner"></div>
+  </div>
+
+  <div class="ellipse"></div>
+  <div class="ellipse2"></div>
+  <div class="ellipse3"></div>
+</body>
+
+</html>

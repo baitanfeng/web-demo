@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" name="throttle" id="throttle">
+
+  <script>
+    window.addEventListener('load', handleLoad, false)
+
+    function handleLoad() {
+      const throttleAjax = throttle(ajax, 1000)
+      const input = document.querySelector('#throttle')
+      input.addEventListener('keyup', (e) => {
+        throttleAjax(e.target.value)
+      })
+    }
+
+    function ajax(content) {
+      console.log(`ajax request ${content}`)
+    }
+
+    function throttle(callback, delay = 1000) {
+      let last
+      return (content) => {
+        let now = +new Date()
+        if (last && now - last < delay) {
+          return
+        }
+        callback && callback(content)
+        last = now
+      }
+    }
+  </script>
+</body>
+</html>

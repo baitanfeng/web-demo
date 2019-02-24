@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="/node_modules/xuanhuan/dist/xuanhuan.min.css"
+    />
+    <style>
+      input + .pop-tips {
+        transform: scale(1, 0);
+        transform-origin: 0 0;
+        transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 0.1);
+      }
+
+      input:focus + .pop-tips {
+        transform: scale(1);
+      }
+    </style>
+  </head>
+  <body class="padding-n">
+    <input type="text" class="input margin-bottom-n" />
+    <div class=" border border-radius-n padding-n pop-tips">pop tips</div>
+    <div>the previous element takes up space</div>
+  </body>
+</html>

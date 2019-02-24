@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .calc {
+        background: url(http://csssecrets.io/images/code-pirate.svg) no-repeat
+          bottom right #58a;
+        background-position: calc(100% - 20px) calc(100% - 10px);
+
+        max-width: 10em;
+        min-height: 5em;
+        padding: 10px;
+        color: white;
+        font: 100%/1 sans-serif;
+      }
+
+      .linear-gradient {
+        background: linear-gradient(
+          to right,
+          #fb3 25%,
+          #58a 0,
+          #58a 50%,
+          #fb3 0,
+          #fb3 75%,
+          #58a 0
+        );
+        background-size: 30px 30px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .linear-gradient2 {
+        background: white;
+        background-image: linear-gradient(
+            90deg,
+            rgba(200, 0, 0, 0.5) 50%,
+            transparent 0
+          ),
+          linear-gradient(rgba(200, 0, 0, 0.5) 50%, transparent 0);
+        background-size: 30px 30px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .linear-gradient3 {
+        background: #58a;
+        background-image: linear-gradient(white 1px, transparent 0),
+          linear-gradient(90deg, white 1px, transparent 0);
+        background-size: 30px 30px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .linear-gradient4 {
+        background: #58a;
+        background-image: linear-gradient(white 2px, transparent 0),
+          linear-gradient(90deg, white 2px, transparent 0),
+          linear-gradient(hsla(0, 0%, 100%, 0.3) 1px, transparent 0),
+          linear-gradient(90deg, hsla(0, 0%, 100%, 0.3) 1px, transparent 0);
+        background-size: 75px 75px, 75px 75px, 15px 15px, 15px 15px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .repeating-linear-gradient {
+        background: repeating-linear-gradient(
+          45deg,
+          #fb3,
+          #fb3 15px,
+          #58a 0,
+          #58a 30px
+        );
+        width: 100px;
+        height: 100px;
+      }
+
+      .repeating-linear-gradient2 {
+        background: #58a;
+        background-image: repeating-linear-gradient(
+          30deg,
+          hsla(0, 0%, 100%, 0.1),
+          hsla(0, 0%, 100%, 0.1) 15px,
+          transparent 0,
+          transparent 30px
+        );
+        width: 100px;
+        height: 100px;
+      }
+
+      .radial-gradient {
+        background: #655;
+        background-image: radial-gradient(tan 30%, transparent 0),
+          radial-gradient(tan 30%, transparent 0);
+        background-size: 30px 30px;
+        background-position: 0 0, 15px 15px;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calc">Code Pirate</div>
+    <div class="linear-gradient"></div>
+    <div class="linear-gradient2"></div>
+    <div class="linear-gradient3"></div>
+    <div class="linear-gradient4"></div>
+    <div class="repeating-linear-gradient"></div>
+    <div class="repeating-linear-gradient2"></div>
+    <div class="radial-gradient"></div>
+  </body>
+</html>
