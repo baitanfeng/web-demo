@@ -1,38 +1,50 @@
-const http = require('http')
+// const http = require('http')
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('ok')
-})
+// const server = http.createServer((req, res) => {
+//   res.statusCode = 200
+//   res.setHeader('Content-Type', 'text/plain')
+//   res.end('ok')
+// })
 
-server.on('upgrade', (req, socket, head) => {
-  socket.write(`
-    HTTP/1.1 101 WebSocket Protocol Handshake\r\n
-    Upgrade: WebSocket\r\n
-    Connection: Upgrade\r\n
-    \r\n
-  `)
+// server.on('upgrade', (req, socket, head) => {
+//   socket.write(`
+//     HTTP/1.1 101 WebSocket Protocol Handshake\r\n
+//     Upgrade: WebSocket\r\n
+//     Connection: Upgrade\r\n
+//     \r\n
+//   `)
 
-  socket.pipe(socket)
-})
+//   socket.pipe(socket)
+// })
 
-server.listen(8084, '127.0.0.1', () => {
-  const options = {
-    port: 8084,
-    hostname: '127.0.0.1',
-    headers: {
-      'Connection': 'Upgrade',
-      'Upgrade': 'websocket'
-    }
-  }
+// server.listen(8084, '127.0.0.1', () => {
+//   const options = {
+//     port: 8084,
+//     hostname: '127.0.0.1',
+//     headers: {
+//       'Connection': 'Upgrade',
+//       'Upgrade': 'websocket'
+//     }
+//   }
 
-  const req = http.request(options)
-  req.end()
+//   const req = http.request(options)
+//   req.end()
 
-  req.on('upgrade', (res, socket, upgradeHead) => {
-    console.log('收到请求')
-    socket.end()
-    process.exit(0)
-  })
-})
+//   req.on('upgrade', (res, socket, upgradeHead) => {
+//     console.log('收到请求')
+//     socket.end()
+//     process.exit(0)
+//   })
+// })
+
+
+// -----------------------------------------
+let express = require("express");
+let app = express();
+
+app.use(express.static(__dirname));
+app.get("/clock", function(req, res) {
+  res.end(new Date().toLocaleString());
+});
+
+app.listen(9090);

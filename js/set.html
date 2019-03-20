@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <p></p>
+  <script>
+    // let set = new Set([1, 2]);
+
+    // let processor = {
+    //   output(value) {
+    //     console.log(value);
+    //   },
+
+    //   process(dataset) {
+    //     dataset.forEach(function(value) {
+    //       this.output(value);
+    //     }, this)
+    //   }
+    // };
+
+    // processor.process(set);
+
+    // let set = new WeakSet(),
+    //   key = {};
+
+    // set.add(key);
+
+    // console.log(set.has(key));
+
+    // set.delete(key);
+
+    // console.log(set.has(key));
+
+    // let key1 = {},
+    //   key2 = {},
+    //   set = new WeakSet([key1, key2]);
+
+    // console.log(set.has(key1));
+    // console.log(set.has(key2));
+
+    // let set = new WeakSet(),
+    //   key = {};
+
+    // set.add(key);
+
+    // console.log(set.has(key));
+
+    // // key = null;
+
+    // console.log([...set][0]);
+    // console.log(set.has([...set][0]));
+
+    // let map = new WeakMap(),
+    //   element = document.querySelector("p");
+
+    // map.set(element, "Original");
+
+    // let value = map.get(element);
+    // console.log(value);
+
+    // element.parentNode.removeChild(element);
+    // element = null;
+
+    var Person = (function () {
+      var privateData = {},
+        privateId = 0;
+
+      function Person(name) {
+        Object.defineProperty(this, "_id", {
+          value: privateId++
+        });
+
+        privateData[this._id] = {
+          name: name
+        };
+      }
+
+      Person.prototype.getName = function () {
+        return privateData[this._id].name;
+      };
+
+      return Person;
+    }());
+  </script>
+</body>
+
+</html>

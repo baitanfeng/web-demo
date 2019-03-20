@@ -21,6 +21,7 @@
   "homepage": "https://github.com/otfngo/web-demo#readme",
   "dependencies": {
     "dateformat": "^3.0.3",
+    "express": "^4.16.4",
     "request": "^2.87.0",
     "ws": "^6.0.0",
     "xuanhuan": "^5.2.16"

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var lastName = "last name";
+
+    // var person = {
+    //   "first name": "Nicholas",
+    //   [lastName]: "Zakas"
+    // };
+
+    // console.log(person["first name"]);
+    // console.log(person[lastName]);
+
+    // var suffix = "name";
+
+    // var person = {
+    //   [`first${suffix}`]: "Nicholas",
+    //   [`last${suffix}`]: "Zakas"
+    // };
+
+    // console.log(person[`first${suffix}`]);
+    // console.log(person[`last${suffix}`]);
+
+    // function mixin(receiver, supplier) {
+    //   Object.keys(supplier).forEach(key => receiver[key] = supplier[key]);
+    //   return receiver;
+    // }
+
+    // var receiver = {},
+    //     supplier = {
+    //       get name() {
+    //         return "file.js";
+    //       }
+    //     };
+    // Object.assign(receiver, supplier);
+
+    // var descriptor = Object.getOwnPropertyDescriptor(receiver, "name");
+
+    // console.log(descriptor.value);
+    // console.log(descriptor.get);
+
+    let person = {
+      getGreeting() {
+        return "Hello";
+      }
+    };
+
+    let dog = {
+      getGreeting() {
+        return "woof";
+      }
+    };
+
+    let friend = {
+      getGreeting() {
+        // return `${Object.getPrototypeOf(this).getGreeting.call(this)}, hi!`;
+        return `${super.getGreeting()}, hi!`;
+      }
+    };
+
+    // set prototype to person
+    Object.setPrototypeOf(friend, person);
+    console.log(friend.getGreeting()); // "Hello, hi!"
+    console.log(Object.getPrototypeOf(friend) === person); // true
+
+    // set prototype to dog
+    Object.setPrototypeOf(friend, dog);
+    console.log(friend.getGreeting()); // "Woof, hi!"
+    console.log(Object.getPrototypeOf(friend) === dog); // true
+  </script>
+</body>
+
+</html>

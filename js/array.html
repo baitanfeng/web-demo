@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const arr = [1, 2, 3, 4];
+    // arr.reduce((prev, curr) => {
+    //   debugger
+    //   return prev + curr;
+    // });
+
+    // function createArray(arrayCreator, value) {
+    //   return arrayCreator(value);
+    // }
+
+    // let items = createArray(Array.of, 3);
+    // console.log(items);
+
+    // function makeArray(arrayLike) {
+    //   // var result = [];
+
+    //   // for (var i = 0, len = arrayLike.length; i < len; i++) {
+    //   //   result.push(arrayLike[i]);
+    //   // }
+
+    //   // return result;
+
+    //   return Array.prototype.slice.call(arrayLike);
+    // }
+
+    // function translate() {
+    //   return Array.from(arguments, value => value + 1);
+    // }
+
+    // let numbers = translate(1, 2, 3);
+
+    // console.log(numbers);
+
+    // let helper = {
+    //   diff: 1,
+
+    //   add(value) {
+    //     return value + this.diff;
+    //   }
+    // };
+
+    // function translate() {
+    //   return Array.from(arguments, helper.add, helper);
+    // }
+
+    // let numbers = translate(1, 2, 3);
+
+    // console.log(numbers);
+
+    // let numbers = {
+    //   *[Symbol.iterator]() {
+    //     yield 1;
+    //     yield 2;
+    //     yield 3;
+    //   }
+    // };
+
+    // let numbers2 = Array.from(numbers, value => value + 1);
+
+    // console.log(numbers2);
+
+    // let numbers = [1, 2, 3, 4];
+
+    // numbers.fill(1);
+
+    // console.log(numbers.toString());
+
+    // let numbers = [1, 2, 3, 4];
+
+    // numbers.fill(1, 2);
+    // console.log(numbers.toString());
+
+    // numbers.fill(0, 1, 3);
+    // console.log(numbers.toString());
+
+    // let numbers = [1, 2, 3, 4];
+
+    // numbers.copyWithin(2, 0, 1);
+
+    // console.log(numbers.toString());
+
+    // let buffer = new ArrayBuffer(10);
+    // let buffer2 = buffer.slice(4, 6);
+
+    // console.log(buffer.byteLength);
+    // console.log(buffer2.byteLength);
+
+    // let buffer = new ArrayBuffer(10),
+    //   view = new DataView(buffer, 5, 2);
+
+    // console.log(view.buffer);
+    // console.log(view.byteOffset);
+    // console.log(view.byteLength);
+
+    // let buffer = new ArrayBuffer(2),
+    //   view = new DataView(buffer);
+    
+    // view.setInt8(0, 5);
+    // view.setInt8(1, -1);
+
+    // console.log(view.getInt8(0));
+    // console.log(view.getInt8(1));
+    // console.log(view.getInt16(0));
+
+    // console.log(Uint8Array.BYTES_PER_ELEMENT);
+    // console.log(Uint16Array.BYTES_PER_ELEMENT);
+
+    // let int8 = new Int8Array(5);
+    // console.log(int8);
+    // console.log(int8.BYTES_PER_ELEMENT);
+
+    // let buffer = new ArrayBuffer(10),
+    //   view1 = new Int8Array(buffer),
+    //   view2 = new Int8Array(buffer, 5, 2);
+
+    // console.log(view1.buffer === view2.buffer);
+    // console.log(view1.buffer === buffer);
+    // console.log(view1.byteOffset);
+    // console.log(view2.byteOffset);
+    // console.log(view1.byteLength);
+    // console.log(view2.byteLength);
+
+    // let int16 = new Int16Array(2),
+    //   float32 = new Float32Array(5);
+
+    // console.log(int16.byteLength);
+    // console.log(int16.length);
+
+    // console.log(float32.byteLength);
+    // console.log(float32.length);
+
+    // let ints1 = new Int16Array([25, 50]),
+    //   ints2 = new Int32Array(ints1);
+
+    // console.log(ints1.buffer === ints2.buffer);
+
+    // console.log(ints1.byteLength);
+    // console.log(ints1.length);
+    // console.log(ints1[0]);
+    // console.log(ints1[1]);
+
+    // console.log(ints2.byteLength);
+    // console.log(ints2.length);
+    // console.log(ints2[0]);
+    // console.log(ints2[1]);
+
+    // let ints = new Int16Array([25, 50]);
+
+    // console.log(ints.length);
+    // console.log(ints[0]);
+    // console.log(ints[1]);
+
+    // ints[0] = 1;
+    // ints[1] = 2;
+
+    // console.log(ints[0]);
+    // console.log(ints[1]);
+
+    // let ints = new Int16Array([25, 50]),
+    //   mapped = ints.map(v => v * 2);
+
+    // console.log(mapped.length);
+    // console.log(mapped[0]);
+    // console.log(mapped[1]);
+
+    // console.log(mapped instanceof Int16Array);
+    // console.log(mapped instanceof Array);
+
+    // let ints = new Int16Array([25, 50]),
+    //   intsArray = [...ints];
+
+    // console.log(intsArray instanceof Array);
+    // console.log(intsArray instanceof Int16Array);
+
+    // console.log(intsArray[0]);
+    // console.log(intsArray[1]);
+
+    // let ints = Int16Array.of(25, 50),
+    //   floats = Float32Array.from([1.5, 2.5]);
+
+    // console.log(ints instanceof Int16Array);
+    // console.log(ints instanceof Int32Array);
+    // console.log(ints instanceof Array);
+    // console.log(floats instanceof Float32Array);
+    // console.log(floats instanceof Float64Array);
+
+    // console.log(ints.length);
+    // console.log(ints[0]);
+    // console.log(ints[1]);
+
+    // console.log(floats.length);
+    // console.log(floats[0]);
+    // console.log(floats[1]);
+
+    // let ints = new Int16Array([25, 50]);
+
+    // console.log(ints instanceof Array);
+    // console.log(Array.isArray(ints));
+
+    // let ints = new Int16Array(4);
+
+    // ints.set([25, 50]);
+    // ints.set([75, 100], 2);
+
+    // console.log(ints);
+    // console.log(ints.toString());
+
+    let ints = new Int16Array([25, 50, 75, 100]),
+      subints1 = ints.subarray(),
+      subints2 = ints.subarray(2),
+      subints3 = ints.subarray(1, 3);
+
+    console.log(subints1.toString());
+    console.log(subints2.toString());
+    console.log(subints3.toString());
+  </script>
+</body>
+
+</html>

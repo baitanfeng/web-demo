@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div></div>
+  <script>
+    let div = document.querySelector("div");
+
+    function send() {
+      let xhr = new XMLHttpRequest();
+
+      xhr.open("GET", "clock", true);
+      xhr.timeout = 2000;
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            div.innerHTML = xhr.responseText;
+          }
+
+          send();
+        }
+      }
+      xhr.ontimeout = function() {
+        send();
+      }
+
+      xhr.send(null);
+    }
+    send();
+  </script>
+</body>
+
+</html>

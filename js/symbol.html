@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let firstName = Symbol("first name");
+    // let person = {};
+
+    // person[firstName] = "Nicholas";
+    // console.log(person[firstName]);
+    // console.log(firstName);
+    // console.log(firstName.toString());
+
+    // let symbol = Symbol("test symbol");
+    // console.log(typeof symbol);
+
+    // let uid = Symbol.for("uid");
+    // let object = {};
+
+    // object[uid] = '12345';
+
+    // console.log(object[uid]);
+    // console.log(uid);
+
+    // let uid = Symbol.for("uid");
+    // let object = {
+    //   [uid]: "12345"
+    // };
+
+    // let symbols = Object.getOwnPropertySymbols(object);
+
+    // console.log(symbols.length);
+    // console.log(symbols[0]);
+    // console.log(object[symbols[0]]);
+
+    // function MyObject() {
+
+    // }
+
+    // Object.defineProperty(MyObject, Symbol.hasInstance, {
+    //   value: function(v) {
+    //     return false;
+    //   }
+    // });
+
+    // let obj = new MyObject();
+    // console.log(obj instanceof MyObject);
+
+    // function SpecialNumber() {
+
+    // }
+
+    // Object.defineProperty(SpecialNumber, Symbol.hasInstance, {
+    //   value: function(v) {
+    //     return (v instanceof Number) && ( v >= 1 && v <= 100);
+    //   }
+    // });
+
+    // let two = new Number(2),
+    //     zero = new Number(0);
+
+    // console.log(two instanceof SpecialNumber);
+    // console.log(zero instanceof SpecialNumber);
+
+    // let collection = {
+    //   0: "hello",
+    //   1: "world",
+    //   length: 2,
+    //   [Symbol.isConcatSpreadable]: true
+    // };
+
+    // let messages = ["hi"].concat(collection);
+
+    // console.log(messages.length);
+    // console.log(messages);
+
+    // // effectively equivalent to /^.{10}$/
+    // let hasLengthOf10 = {
+    //   [Symbol.match]: function (value) {
+    //     return value.length === 10 ? [value] : null;
+    //   },
+    //   [Symbol.replace]: function (value, replacement) {
+    //     return value.length === 10 ? replacement : value;
+    //   },
+    //   [Symbol.search]: function (value) {
+    //     return value.length === 10 ? 0 : -1;
+    //   },
+    //   [Symbol.split]: function (value) {
+    //     return value.length === 10 ? ["", ""] : [value];
+    //   }
+    // };
+
+    // let message1 = "Hello world", // 11 characters
+    //   message2 = "Hello John"; // 10 characters
+
+
+    // let match1 = message1.match(hasLengthOf10),
+    //   match2 = message2.match(hasLengthOf10);
+
+    // console.log(match1); // null
+    // console.log(match2); // ["Hello John"]
+
+    // let replace1 = message1.replace(hasLengthOf10, "Howdy!"),
+    //   replace2 = message2.replace(hasLengthOf10, "Howdy!");
+
+    // console.log(replace1); // "Hello world"
+    // console.log(replace2); // "Howdy!"
+
+    // let search1 = message1.search(hasLengthOf10),
+    //   search2 = message2.search(hasLengthOf10);
+
+    // console.log(search1); // -1
+    // console.log(search2); // 0
+
+    // let split1 = message1.split(hasLengthOf10),
+    //   split2 = message2.split(hasLengthOf10);
+
+    // console.log(split1); // ["Hello world"]
+    // console.log(split2); // ["", ""]
+
+    function Temperature(degrees) {
+      this.degrees = degrees;
+    }
+
+    Temperature.prototype[Symbol.toPrimitive] = function (hint) {
+      debugger;
+
+      switch (hint) {
+        case "string":
+          return this.degrees + "\u00b0"; // degrees symbol
+
+        case "number":
+          return this.degrees;
+
+        case "default":
+          return this.degrees + " degrees";
+      }
+    };
+
+    let freezing = new Temperature(32);
+
+    console.log(freezing + "!"); // "32 degrees!"
+    console.log(freezing / 2); // 16
+    console.log(String(freezing)); // "32°"
+  </script>
+</body>
+
+</html>
