@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var tmp = new Date();
+
+    // function f() {
+    //   console.log(tmp);
+    //   if (false) {
+    //     var tmp = "hello world";
+    //   }
+    // }
+
+    // f();
+
+    var constantize = obj => {
+      Object.freeze(obj);
+      Object.keys().forEach(key => {
+        if (typeof obj[key] === "object") {
+          constantize(obj[key]);
+        }
+      });
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      background: #f06d06;
+      margin: 10px;
+    }
+
+    main {
+      background: white;
+      margin: 20px 0;
+      padding: 10px;
+    }
+
+    .inline-X-center {
+      text-align: center;
+    }
+
+    .inline-X-center span {
+      display: inline-block;
+      background: black;
+      color: white;
+      padding: 10px;
+    }
+
+    .block-X-center div {
+      margin: 0 auto;
+
+      max-width: 200px;
+      background: black;
+      color: white;
+      padding: 10px;
+    }
+
+    .flex-X-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .flex-X-center div {
+      background: black;
+      color: white;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="inline-X-center">
+    <span>i'm centered!</span>
+  </main>
+
+  <main class="block-X-center">
+    <div>i'm centered!</div>
+  </main>
+
+  <main class="flex-X-center">
+    <div>i'm centered!</div>
+  </main>
+</body>
+
+</html>

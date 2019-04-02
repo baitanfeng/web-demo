@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      background: #f06d06;
+      margin: 10px;
+    }
+
+    main {
+      background: white;
+      margin: 20px 0;
+      padding: 10px;
+    }
+
+    .position-XY-center {
+      height: 200px;
+    }
+
+    .position-XY-center div {
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-block;
+
+      background: black;
+      color: white;
+      padding: 10px;
+    }
+
+    .flex-XY-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 200px;
+    }
+
+    .flex-XY-center div {
+      background: black;
+      color: white;
+      padding: 10px;
+    }
+
+    .grid-XY-center {
+      display: grid;
+
+      height: 200px;
+    }
+
+    .grid-XY-center div {
+      margin: auto;
+
+      background: black;
+      color: white;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="position-XY-center">
+    <div>I'm a block-level element, centered within my parent.</div>
+  </main>
+
+  <main class="flex-XY-center">
+    <div>I'm a block-level element, centered within my parent.</div>
+  </main>
+
+  <main class="grid-XY-center">
+    <div>I'm centered!</div>
+  </main>
+</body>
+
+</html>
