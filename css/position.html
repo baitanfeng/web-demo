@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <style>
-      .sticky {
-        position: sticky;
-        top: 0;
-        height: 80px;
-        background: orangered;
-      }
-    </style>
-  </head>
-  <body>
-    <section>
-      <div style="background: lightgrey;">
-        值得强调的是，当你使某个元素浮动并让文字环绕它时，内容的line
-        box被截断了。如果你让一个元素浮动，同时为紧跟着的包含文本的元素设置一个背景色，你会发现背景色会出现在浮动元素下方。
-      </div>
-      <div>
-        如果你想要在浮动元素和环绕的文本之间创建边距，你需要给浮动元素设置外边距。在文本元素上设置外边距只会让其相对于容器缩进。例如在下面这个例子中，你就需要为左侧浮动的图片设置右边距和下边距。
-      </div>
-    </section>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, * {
+      margin: 0;
+      padding: 0;
+    }
 
-    <section>
-      <div class="sticky"></div>
-      <div style="background: lightgrey;">
-        值得强调的是，当你使某个元素浮动并让文字环绕它时，内容的line
-        box被截断了。如果你让一个元素浮动，同时为紧跟着的包含文本的元素设置一个背景色，你会发现背景色会出现在浮动元素下方。
-      </div>
-      <div>
-        如果你想要在浮动元素和环绕的文本之间创建边距，你需要给浮动元素设置外边距。在文本元素上设置外边距只会让其相对于容器缩进。例如在下面这个例子中，你就需要为左侧浮动的图片设置右边距和下边距。
-      </div>
-    </section>
-  </body>
+    body {
+      height: 2000px;
+    }
+
+    .red {
+      background: red;
+      width: 200px;
+      height: 200px;
+
+      position: relative;
+      left: 100px;
+      top: 100px;
+    }
+
+    .blue {
+      background: blue;
+      width: 100px;
+      height: 100px;
+    }
+
+    .green {
+      background: green;
+      width: 100px;
+      height: 100px;
+      position: fixed;
+      top: 150px;
+      left: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="red">
+    <div class="blue"></div>
+    <div class="green"></div>
+  </div>
+  <div class="blue"></div>
+</body>
 </html>

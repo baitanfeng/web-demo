@@ -37,31 +37,47 @@
     //   }
     // }
 
-    const PageHandler = {
-      id: "123456",
+    // const PageHandler = {
+    //   id: "123456",
 
-      // init: function() {
-      //   document.addEventListener("click", (function(event) {
-      //     this.doSomething(event.type);
-      //   }).bind(this), false);
-      // },
+    //   // init: function() {
+    //   //   document.addEventListener("click", (function(event) {
+    //   //     this.doSomething(event.type);
+    //   //   }).bind(this), false);
+    //   // },
 
-      init: function () {
-        document.addEventListener("click", event => this.doSomething(event.type), false);
-      },
+    //   init: function () {
+    //     document.addEventListener("click", event => this.doSomething(event.type), false);
+    //   },
 
-      doSomething: function (type) {
-        console.log(`Handling ${type} for ${this.id}`);
-      }
-    }
+    //   doSomething: function (type) {
+    //     console.log(`Handling ${type} for ${this.id}`);
+    //   }
+    // }
 
     // PageHandler.init();
 
-    function factorial(n, p = 1) {
-      if (n <= 1) {
-        return 1 * p;
+    // function factorial(n, p = 1) {
+    //   if (n <= 1) {
+    //     return 1 * p;
+    //   } else {
+    //     return factorial(n - 1, n * p);
+    //   }
+    // }
+
+    // function factorial(num) {
+    //   if (num <= 1) {
+    //     return 1;
+    //   } else {
+    //     return num * arguments.callee(num - 1);
+    //   }
+    // }
+
+    let factorial = function f(num)  {
+      if (num <= 1) {
+        return 1;
       } else {
-        return factorial(n - 1, n * p);
+        return num * f(num - 1);
       }
     }
   </script>

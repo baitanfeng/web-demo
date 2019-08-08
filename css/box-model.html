@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .section {
+      background: rebeccapurple;
+      overflow: hidden;
+      margin: 20px auto;
+    }
+
+    .child {
+      height: 100px;
+      margin-top: 10px;
+      background: tomato;
+    }
+
+    .section p {
+      margin: 15px auto 25px;
+      background: red;
+    }
+
+    .bfc {
+      overflow: hidden;
+    }
+
+    .left {
+      float: left;
+      background: pink;
+      width: 100px;
+      height: 100px;
+    }
+
+    .right {
+      height: 110px;
+      background: gray;
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <article class="child"></article>
+  </section>
+
+  <section class="section">
+    <p>1</p>
+    <div class="bfc">
+      <p>2</p>
+    </div>
+    <p>3</p>
+  </section>
+
+  <section class="section">
+    <div class="left"></div>
+    <div class="right bfc"></div>
+  </section>
+</body>
+</html>
