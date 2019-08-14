@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .dropbox {
+      border: 1px solid orangered;
+      height: 100px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .preview {
+      border: 1px solid orangered;
+      height: 100px;
+      box-sizing: border-box;
+    }
+
+    .img {
+      width: 80px;
+      height: 80px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="file" id="fileElem" multiple accept="image/*" style="display:none">
+  <!-- <button id="fileSelect">Select some files</button> -->
+  <label for="fileElem">Select some files</label>
+  <div class="dropbox">drop some files into here</div>
+  <div class="preview"></div>
+  <div id="fileList">
+    <p>no file selected!</p>
+  </div>
+
+  <script>
+    const fileElem = document.querySelector("#fileElem"),
+      selectElem = document.querySelector("#fileSelect");
+    const dropbox = document.querySelector(".dropbox");
+    const preview = document.querySelector(".preview");
+    const fileList = document.querySelector("#fileList");
+
+    dropbox && dropbox.addEventListener("dragenter", dragenter, false);
+    dropbox && dropbox.addEventListener("dragover", dragover, false);
+    dropbox && dropbox.addEventListener("drop", drop, false);
+
+    fileElem && fileElem.addEventListener("change", handleFiles, false);
+    selectElem && selectElem.addEventListener("click", function () {
+      fileElem && fileElem.click();
+    }, false);
+
+    function handleFiles() {
+      debugger;
+    }
+
+    function dragenter(e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    function dragover(e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      e.stopPropagation();
+      e.preventDefault();
+
+      let dt = e.dataTransfer;
+      let files = dt.files;
+      debugger
+
+      for (let i = 0, len = files.length; i < len; i ++) {
+        let file = files[i];
+        let imageType = /^image\//;
+
+        if (!imageType.test(file.type)) {
+          continue;
+        }
+
+        let img = document.createElement("img");
+        img.classList.add("img");
+        img.file = file;
+        preview && preview.appendChild(img);
+
+        let reader = new FileReader();
+        reader.onload = (function(aImg) {
+          return function(e) {
+            aImg.src = e.target.result;
+          };
+        })(img);
+        reader.readAsDataURL(file);
+      }
+
+      fileList.innerHTML = "";
+      let list = document.createElement("ul");
+      fileList.appendChild(list);
+      window.URL = window.URL || window.webkitURL;
+      for (let i = 0, len = files.length; i < len; i ++) {
+        let file = files[i];
+        let li = document.createElement('li');
+        list.appendChild(li);
+
+        let img = document.createElement("img");
+        img.classList.add("img");
+        img.src = window.URL.createObjectURL(file);
+        img.onload = (function(aImg) {
+          return function() {
+            window.URL.revokeObjectURL(aImg.src);
+          }
+        })(img)
+        
+        li.appendChild(img);
+        let info = document.createElement("span");
+        info.innerHTML = `${file.name}: ${file.size} bytes.`;
+        li.appendChild(info);
+      }
+    }
+  </script>
+</body>
+
+</html>
