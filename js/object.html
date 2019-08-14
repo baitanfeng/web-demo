@@ -48,34 +48,216 @@
     // console.log(descriptor.value);
     // console.log(descriptor.get);
 
-    let person = {
-      getGreeting() {
-        return "Hello";
+    // let person = {
+    //   getGreeting() {
+    //     return "Hello";
+    //   }
+    // };
+
+    // let dog = {
+    //   getGreeting() {
+    //     return "woof";
+    //   }
+    // };
+
+    // let friend = {
+    //   getGreeting() {
+    //     // return `${Object.getPrototypeOf(this).getGreeting.call(this)}, hi!`;
+    //     return `${super.getGreeting()}, hi!`;
+    //   }
+    // };
+
+    // // set prototype to person
+    // Object.setPrototypeOf(friend, person);
+    // console.log(friend.getGreeting()); // "Hello, hi!"
+    // console.log(Object.getPrototypeOf(friend) === person); // true
+
+    // // set prototype to dog
+    // Object.setPrototypeOf(friend, dog);
+    // console.log(friend.getGreeting()); // "Woof, hi!"
+    // console.log(Object.getPrototypeOf(friend) === dog); // true
+
+    // let birth = '2000/01/01';
+    
+    // const Person = {
+    //   name: 'zhangsan',
+    //   birth,
+    //   hello() {
+    //     console.log(this.name);
+    //   }
+    // }
+
+    // // Person.hello();
+
+    // let hello = Person.hello;
+    // hello();
+
+    // let data = {
+    //   name: 'otfngo'
+    // };
+    // observe(data);
+    // data.name = 'tianya';
+
+    // function observe(data) {
+    //   if (!data || typeof data !== 'object') return;
+
+    //   Object.keys(data).forEach(key => {
+    //     defineReactive(data, key, data[key]);
+    //   });
+    // }
+
+    // function defineReactive(data, key, val) {
+    //   let dep = new Dep();
+    //   observe(val);
+
+    //   Object.defineProperty(data, key, {
+    //     enumerable: true,
+    //     configurable: false,
+    //     get() {
+    //       return val;
+    //     },
+    //     set(newVal) {
+    //       if (val === newVal) return;
+    //       console.log(`hahaha, ${val} --> ${newVal}`);
+    //       val = newVal;
+    //       dep.notify();
+    //     }
+    //   });
+    // }
+
+    // function Dep() {
+    //   this.subs = [];
+    // }
+
+    // Dep.prototype = {
+    //   addSub(sub) {
+    //     this.subs.push(sub);
+    //   },
+    //   notify() {
+    //     this.subs.forEach(sub => {
+    //       sub.update();
+    //     });
+    //   }
+    // };
+
+    // let person = {};
+    // Object.defineProperty(person, 'name', {
+    //   enumerable: true,
+    //   value: 'otfngo'
+    // });
+
+    // console.log(person);
+    // delete person.name;
+    // console.log(person);
+
+    // let o = {
+    //   a: 7,
+    //   get b() {
+    //     return this.a + 1;
+    //   },
+    //   set c(x) {
+    //     this.a = x / 2;
+    //   }
+    // };
+    // console.log(o.a);
+    // console.log(o.b);
+    // o.c = 50;
+    // console.log(o.a, o.b);
+
+    // let o = Object.create(Object.prototype, {
+    //   bar: {
+    //     get() {
+    //       return this.a;
+    //     },
+    //     set(val) {
+    //       this.a = val;
+    //     }
+    //   }
+    // });
+
+    // o.a = 10;
+    // console.log(o.a, o.bar);
+    // o.bar = 12;
+    // console.log(o.a, o.bar);
+
+    // let o = {
+    //   a: 1
+    // };
+
+    // Object.defineProperty(o, 'b', {
+    //   get() {
+    //     return this.a;
+    //   },
+    //   set(val) {
+    //     this.a = val;
+    //   }
+    // });
+
+    // console.log(o.a, o.b);
+    // o.b = 2;
+    // console.log(o.a, o.b);
+
+    // let o = {
+    //   a: 1,
+    //   b: 2
+    // };
+
+    // Object.defineProperties(o, {
+    //   A: {
+    //     get() {
+    //       return this.a;
+    //     },
+    //     set(val) {
+    //       this.a = val;
+    //     }
+    //   },
+    //   B: {
+    //     get() {
+    //       return this.b;
+    //     },
+    //     set(val) {
+    //       this.b = val;
+    //     }
+    //   }
+    // });
+    // console.log(o.a, o.A, o.b, o.B);
+    // o.A = 3;
+    // o.B = 4;
+    // console.log(o.a, o.A, o.b, o.B);
+
+    let book = {};
+    Object.defineProperties(book, {
+      _year: {
+        value: 2004,
+        writable: true
+      },
+      edition: {
+        value: 1,
+        writable: true
+      },
+      year: {
+        get() {
+          return this._year;
+        },
+        set(val) {
+          if (val > 2004) {
+            this._year = val;
+            this.edition = val - 2004;
+          }
+        }
       }
-    };
+    });
 
-    let dog = {
-      getGreeting() {
-        return "woof";
-      }
-    };
+    console.log(book._year, book.edition, book.year);
+    book._year = 2005;
+    console.log(book._year, book.edition, book.year);
+    book.edition = 2;
+    console.log(book._year, book.edition, book.year);
+    book.year = 2006;
+    console.log(book._year, book.edition, book.year);
 
-    let friend = {
-      getGreeting() {
-        // return `${Object.getPrototypeOf(this).getGreeting.call(this)}, hi!`;
-        return `${super.getGreeting()}, hi!`;
-      }
-    };
-
-    // set prototype to person
-    Object.setPrototypeOf(friend, person);
-    console.log(friend.getGreeting()); // "Hello, hi!"
-    console.log(Object.getPrototypeOf(friend) === person); // true
-
-    // set prototype to dog
-    Object.setPrototypeOf(friend, dog);
-    console.log(friend.getGreeting()); // "Woof, hi!"
-    console.log(Object.getPrototypeOf(friend) === dog); // true
+    let descriptor = Object.getOwnPropertyDescriptor(book, '_year');
+    console.log(descriptor);
   </script>
 </body>
 

@@ -127,27 +127,59 @@
     //   console.log(value); // 43
     // });
 
-    class MyPromise extends Promise {
-      success(resolve, reject) {
-        return this.then(resolve, reject);
+    // class MyPromise extends Promise {
+    //   success(resolve, reject) {
+    //     return this.then(resolve, reject);
+    //   }
+
+    //   failure(reject) {
+    //     return this.catch(reject);
+    //   }
+    // }
+
+    // let promise = new MyPromise(function(resolve, reject) {
+    //   resolve(42);
+    // });
+
+    // promise.success(function(value) {
+    //   console.log(value);
+    // }).failure(function(value) {
+    //   console.log(value);
+    // });
+
+    // let promise = new Promise(function(resolve, reject) {
+    //   console.log('promise');
+    //   resolve();
+    // });
+    // promise.then(function() {
+    //   console.log('resolve');
+    // })
+    // console.log('hi');
+
+    // let promise = Promise.resolve(42);
+    // promise.then(function(value) {
+    //   console.log(value);
+    // });
+    // console.log('hi');
+
+    // let promise = Promise.reject(43);
+    // promise.catch(function(value) {
+    //   console.log(value);
+    // });
+    // console.log('hi');
+
+    let promise = new Promise(function(resolve, reject) {
+      // throw new Error('error');
+      try {
+        throw new Error('error');
+      } catch (ex) {
+        reject(ex);
       }
-
-      failure(reject) {
-        return this.catch(reject);
-      }
-    }
-
-    let promise = new MyPromise(function(resolve, reject) {
-      resolve(42);
     });
-
-    promise.success(function(value) {
-      console.log(value);
-    }).failure(function(value) {
-      console.log(value);
+    promise.catch(function(error) {
+      console.log(error.message);
     });
-
-    
+    console.log('hi');
   </script>
 </body>
 
