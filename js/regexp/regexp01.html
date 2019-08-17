@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            let reg = /d(b+)d/g;
+            let str = 'cdbbdbsbz';
+            console.log(reg.exec(str));
+            console.log(str.match(reg));
+        }
+
+        {
+            let re = /(\w+)\s(\w+)/;
+            let str = "John Smith";
+            console.log(str.replace(re, "$2, $1"));
+        }
+
+        {
+            let names = "Orange Trump ;Fred Barney; Helen Rigby ; Bill Abel ; Chris Hand ";
+            let pattern = /\s*;\s*/;
+
+            let nameList = names.split(pattern);
+            let surnameList = nameList.map(item => item.replace(/(\w+)\s+(\w+)/, "$2, $1"));
+            console.log(nameList);
+            console.log(surnameList);
+        }
+    </script>
+</body>
+
+</html>
