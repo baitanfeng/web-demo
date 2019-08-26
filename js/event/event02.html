@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="click me" class="btn">
+
+    <script>
+        document.addEventListener('click', showMessage, false);
+
+        function showMessage(event) {
+            console.log(event.target, event.currentTarget, this);
+        }
+    </script>
+</body>
+
+</html>

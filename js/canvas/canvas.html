@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="drawing" width="200" height="200"></canvas>
+
+    <script>
+        let drawing = document.querySelector("#drawing");
+        if (drawing.getContext) {
+            let context = drawing.getContext("2d");
+
+            // context.fillStyle = "#ff0000";
+            // context.fillRect(10, 10, 50, 50);
+
+            // context.fillStyle = "rgba(0, 0, 255, 0.5)";
+            // context.fillRect(30, 30, 50, 50);
+
+            // context.clearRect(40, 40, 10, 10);
+
+            context.beginPath();
+
+            context.arc(100, 100, 99, 0, 2 * Math.PI, false);
+
+            context.moveTo(194, 100);
+            context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+
+            context.moveTo(100, 100);
+            context.lineTo(100, 25);
+
+            context.moveTo(100, 100);
+            context.lineTo(45, 100);
+
+            context.textAlign = "center";
+            // context.textBaseline = "middle";
+            context.fillText('12', 100, 20);
+
+            context.stroke();
+        }
+    </script>
+</body>
+
+</html>

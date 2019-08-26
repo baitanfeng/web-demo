@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p {
+            background: orangered;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p id="p">
+            <button id="button1">button1</button>
+            <button>button2</button>
+            <button>button3</button>
+        </p>
+    </div>
+    <script>
+        const MOUSE_DOWN = "mousedown";
+        const MOUSE_UP = "mouseup";
+        const MOUSE_CLICK = "click";
+        const MOUSE_DBLCLICK = "dblclick";
+        const MOUSE_ENTER = "mouseenter";
+        const MOUSE_LEAVE = "mouseleave";
+        const MOUSE_MOVE = "mousemove";
+        const MOUSE_OUT = "mouseout";
+        const MOUSE_OVER = "mouseover";
+        const MOUSE_WHEEL = "mousewheel";
+
+        window.onload = function () {
+            let elem = document.querySelector("#p");
+            elem.addEventListener("mousedown", handleMouseDown, false);
+            elem.addEventListener("mouseup", handleMouseUp, false);
+            elem.addEventListener("click", handleMouseClick, false);
+            elem.addEventListener("dblclick", handleMouseDblclick, false);
+            elem.addEventListener("mouseenter", handleMouseEnter, false);
+            // elem.addEventListener("mouseleave", handleMouseLeave, false);
+            // elem.addEventListener("mousemove", handleMouseMove, false);
+            // elem.addEventListener("mouseout", handleMouseOut, false);
+            elem.addEventListener("mouseover", handleMouseOver, false);
+            elem.addEventListener("mousewheel", handleMouseWheel, false);
+
+            function handleMouseWheel(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_WHEEL
+                })
+            }
+
+            function handleMouseOver(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_OVER
+                })
+            }
+
+            function handleMouseOut(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_OUT
+                })
+            }
+
+            function handleMouseMove(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_MOVE
+                })
+            }
+
+            function handleMouseLeave(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_LEAVE
+                })
+            }
+
+            function handleMouseEnter(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_ENTER
+                })
+            }
+
+            function handleMouseDown(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_DOWN,
+                    cancel: true
+                });
+            }
+
+            function handleMouseUp(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_UP
+                });
+            }
+
+            function handleMouseClick(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_CLICK
+                });
+            }
+
+            function handleMouseDblclick(event) {
+                handleMouseEvent({
+                    event,
+                    type: MOUSE_DBLCLICK
+                });
+            }
+
+            function handleMouseEvent({
+                event,
+                type,
+                cancel
+            } = {}) {
+                console.log(event, type, cancel);
+            }
+        }
+    </script>
+</body>
+
+</html>

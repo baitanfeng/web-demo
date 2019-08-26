@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html, body {
+            box-sizing: border-box;
+        }
+        html {
+            height: 1000px;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.addEventListener('scroll', handleScroll, false);
+
+        function handleScroll(event) {
+            let scrollTop, scrollLeft;
+            
+            if (document.compatMode == "CSS1Compat") {
+                scrollTop = document.documentElement.scrollTop;
+                scrollLeft = document.documentElement.scrollLeft;
+            } else {
+                scrollTop = document.body.scrollTop;
+                scrollLeft = document.body.scrollLeft;
+            }
+            
+            console.log(event);
+            console.log(scrollTop, scrollLeft);
+        }
+    </script>
+</body>
+
+</html>

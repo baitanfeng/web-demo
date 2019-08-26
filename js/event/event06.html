@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+            document.addEventListener('keydown', handleKeyEvent, false);
+            document.addEventListener('keypress', handleKeyEvent, false);
+            document.addEventListener('keyup', handleKeyEvent, false);
+
+            function handleKeyEvent(event) {
+                console.log(event, event.type);
+            }
+        }
+    </script>
+</body>
+
+</html>
