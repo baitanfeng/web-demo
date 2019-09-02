@@ -6,25 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        canvas {
-            background: radial-gradient(black, transparent);
-        }
-    </style>
 </head>
 
 <body>
-    <img src="flower.jpg" alt="flower">
     <canvas id="drawing" width="200" height="200"></canvas>
 
     <script>
         window.onload = function() {
-            let image = document.images[0];
             let drawing = document.querySelector("#drawing");
-            let context = drawing.getContext("2d");
+            let context = drawing.getContext('2d');
 
-            // context.drawImage(image, 0, 0, drawing.width, drawing.height);
-            context.drawImage(image, 0, 0, 100, 100, 50, 50, 100, 100);
+            let gradient = context.createLinearGradient(0, 0, 200, 200);
+            gradient.addColorStop(0, "white");
+            gradient.addColorStop(0.5, "black");
+            gradient.addColorStop(1, "white");
+
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, 200, 200);
         }
     </script>
 </body>

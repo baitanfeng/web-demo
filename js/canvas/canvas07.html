@@ -25,34 +25,32 @@
         window.onload = function() {
             let drawing = document.querySelector("#drawing");
     
-            if (drawing.getContext) {
-                let context = drawing.getContext("2d");
-                let image = document.images[0];
-                let red, green, blue, alpha;
-                let average;
-    
-                context.drawImage(image, 0, 0);
+            let context = drawing.getContext("2d");
+            let image = document.images[0];
+            let red, green, blue, alpha;
+            let average;
 
-                let imageData = context.getImageData(0, 0, image.width, image.height);
-                let data = imageData.data;
+            context.drawImage(image, 0, 0);
 
-                for (let i = 0, len = data.length; i < len; i += 4) {
-                    red = data[i];
-                    green = data[i + 1];
-                    blue = data[i + 2];
-                    alpha = data[i + 3];
+            let imageData = context.getImageData(0, 0, image.width, image.height);
+            let data = imageData.data;
 
-                    average = Math.floor((red + green + blue) / 3);
+            for (let i = 0, len = data.length; i < len; i += 4) {
+                red = data[i];
+                green = data[i + 1];
+                blue = data[i + 2];
+                alpha = data[i + 3];
 
-                    data[i] = average;
-                    data[i + 1] = average;
-                    data[i + 2] = average;
-                }
+                average = Math.floor((red + green + blue) / 3);
 
-                imageData.data = data;
-                context.putImageData(imageData, 0, 0)
-                console.log(context.createImageData(100, 100));
+                data[i] = average;
+                data[i + 1] = average;
+                data[i + 2] = average;
             }
+
+            imageData.data = data;
+            context.putImageData(imageData, 0, 0)
+            console.log(context.createImageData(100, 100));
         }
     </script>
 </body>
