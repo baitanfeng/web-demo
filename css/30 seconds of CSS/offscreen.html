@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .offscreen {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="button" href="">
+        Learn More <span class="offscreen"> about pants</span>
+    </a>
+    <p>
+        A bulletproof way to completely hide an element visually and positionally in the DOM while still allowing it to be accessed by JavaScript and readable by screen readers.
+        This method is very useful for accessibility (ADA) development when more context is needed for visually-impaired users. As an alternative to display: none which is not
+        readable by screen readers or visibility: hidden which takes up physical space in the DOM.
+    </p>
+</body>
+
+</html>
