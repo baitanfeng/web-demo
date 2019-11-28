@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .dynamic-border {
+            width: 200px;
+            height: 80px;
+            background: 
+                linear-gradient(90deg, #f66, #66f) no-repeat left top/0px 2px,
+                linear-gradient(180deg, #f66, #66f) no-repeat right top/2px 0px,
+                linear-gradient(270deg, #f66, #66f) no-repeat right bottom/0px 2px,
+                linear-gradient(0deg, #f66, #66f) no-repeat left bottom/2px 0px;
+            transition: all 0.3s;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            color: #f66;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .dynamic-border:hover {
+            background-size: 
+                100% 2px,
+                2px 100%,
+                100% 2px,
+                2px 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dynamic-border">iCSS</div>
+</body>
+
+</html>
