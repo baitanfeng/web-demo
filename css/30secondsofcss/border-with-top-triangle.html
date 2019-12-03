@@ -8,15 +8,17 @@
     <title>Document</title>
     <style>
         :root {
-            --background: #ffffff;
+            --backgroundColor: #fff;
+            --borderColor: #ccc;
         }
 
         .container {
             position: relative;
-            background: var(--background);
+            background: var(--backgroundColor);
             padding: 15px;
-            border: 1px solid #dddddd;
+            border: 1px solid var(--borderColor);
             margin-top: 20px;
+            border-radius: 4px;
         }
 
         .container:before,
@@ -26,13 +28,13 @@
             bottom: 100%;
             left: 19px;
             border: 11px solid transparent;
-            border-bottom-color: #dddddd;
+            border-bottom-color: var(--borderColor);
         }
 
         .container:after {
             left: 20px;
             border: 10px solid transparent;
-            border-bottom-color: var(--background);
+            border-bottom-color: var(--backgroundColor);
         }
     </style>
 </head>

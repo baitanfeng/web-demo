@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .element {
+            background-color: skyblue;
+            overflow: hidden;
+        }
+
+        .element p {
+            color: white;
+            font-size: 3em;
+            text-align: center;
+        }
+
+        .element:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            background-color: #e4708a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="element" id="element">
+        <p>I change color in fullscreen mode!</p>
+    </div>
+    <button id="button">Go Full Screen!</button>
+
+    <script>
+        const button = document.querySelector('#button');
+        const element = document.querySelector('#element');
+
+        button.addEventListener('click', handleButtonClick, true);
+
+        function handleButtonClick() {
+            element.requestFullscreen();
+        }
+    </script>
+</body>
+
+</html>
