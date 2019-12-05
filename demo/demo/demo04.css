@@ -1,23 +1,23 @@
 div {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  background: #ddd;
-  margin: 16px;
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 10px 0;
+    background: #eee;
 }
 
 div.transform::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: 80px;
-  border-bottom: 1px solid deeppink;
-  transform-origin: bottom center;
-  transform: rotateZ(45deg) scale(1.4)
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 80px;
+    border-bottom: 1px solid deeppink;
+    transform-origin: bottom center;
+    transform: rotateZ(45deg) scaleX(1.4);
 }
 
 div.linear-gradient {
-  background: linear-gradient(45deg, #ddd 49.9%, transparent 49.9%, deeppink 49.9%, deeppink 50.1%, transparent 50.1%, #ddd 50.1%)
+    background: linear-gradient(45deg, #eee 49.9%, deeppink 50.1%, #eee 0)
 }

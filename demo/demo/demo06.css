@@ -1,59 +1,21 @@
 div {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-}
-
-.circle {
-  border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+    background-color: red;
 }
 
 .semi-circle {
-  border-radius: 50px 50px 0 0;
-  height: 50px;
+    height: 50px;
+    border-radius: 50px 50px 0 0;
 }
 
 .sector {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px 0 0 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px 0 0 0;
 }
 
 .arc {
-  border-radius: 100px 0;
-}
-
-.triangle {
-  border: 50px solid green;
-  width: 0;
-  height: 0;
-  border-top-color: yellow;
-  border-right-color: blue;
-  border-bottom-color: pink;
-  border-left-color: orange;
-}
-.arrow {
-  background: none; /*为了清除前面div设置的背景颜色*/
-  border: 50px solid red;
-  width: 0;
-  height: 0;
-  border-color: red transparent transparent transparent;
-}
-
-/*圆角矩形*/
-.rectangle {
-  width: 200px;
-  border-radius: 15px;
-  position: relative;
-}
-/*小三角*/
-.rectangle::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border: 15px solid red;
-  border-color: red transparent transparent transparent;
-  position: absolute;
-  bottom: -30px;
-  left: 40px;
+    border-radius: 100px 0;
 }

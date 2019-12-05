@@ -1,42 +1,34 @@
 .accordion {
-  margin-bottom: 1px;
+    margin-bottom: 1px;
 }
 
 .accordion-title {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  text-align: left;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 36px;
-  transition: 0.4s;
+    position: relative;
+    color: black;
+    background-color: #eee;
+    transition: 0.4s;
 }
 
 .accordion-title.active,
 .accordion-title:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .accordion-title:after {
-  content: '\002B';
-  color: #777;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
+    content: '\002B';
+    position: absolute;
+    right: 10px;
+    color: #777;
 }
 
 .accordion-title.active:after {
-  content: "\2212";
+    content: "\2212";
 }
 
 .accordion-body {
-  text-align: justify;
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
+    text-align: justify;
+    max-height: 0;
+    background-color: white;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
 }
