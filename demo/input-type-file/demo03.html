@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .thumb {
+            height: 75px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" name="files[]" id="files" multiple>
+    <div class="output"></div>
+
+    <script>
+        document.querySelector('#files').addEventListener('change', handleFileSelect, false)
+
+        function handleFileSelect(evt) {
+            const files = evt.target.files
+
+            const ul = document.createElement('ul')
+            for (let i = 0, len = files.length; i < len; i++) {
+                const file = files[i]
+                if (/image/.test(file.type) === false) {
+                    continue
+                }
+
+                const reader = new FileReader()
+                reader.onload = function (e) {
+                    const li = document.createElement('li')
+                    const img = document.createElement('img')
+
+                    li.innerHTML = `name: ${file.name}, size: ${file.size}, type: ${file.type}`
+                    img.classList = 'thumb'
+                    img.src = e.target.result
+                    img.alt = file.name
+
+                    li.appendChild(img)
+                    ul.appendChild(li)
+                }
+                reader.readAsDataURL(file)
+            }
+
+            document.querySelector('.output').appendChild(ul)
+        }
+    </script>
+</body>
+
+</html>
