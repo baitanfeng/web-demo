@@ -2,50 +2,41 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    div {
-      width: 200px;
-      height: 200px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            margin: 10px 0;
+            background: orangered;
+        }
 
-    .outer {
-      border: 1px solid violet;
-    }
+        .ellipse_1 {
+            border-radius: 30% 70% 70% 30% / 70% 70% 30% 30%;
+        }
 
-    .inner {
-      background-color: orangered;
-      border-radius: 30% 70% 70% 30% / 70% 70% 30% 30%;
-    }
+        .ellipse_2 {
+            border-radius: 50% / 100% 100% 0 0;
+        }
 
-    .ellipse {
-      border-radius: 50% / 100% 100% 0 0;
-      background: orangered;
-    }
+        .ellipse_3 {
+            border-radius: 100% 0 0 100% / 50%;
+        }
 
-    .ellipse2 {
-      border-radius: 100% 0 0 100% / 50%;
-      background: orangered;
-    }
-
-    .ellipse3 {
-      border-radius: 100% 0 0 0;
-      background: orangered;
-    }
-  </style>
+        .ellipse_4 {
+            border-radius: 100% 0 0 0;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="outer">
-    <div class="inner"></div>
-  </div>
-
-  <div class="ellipse"></div>
-  <div class="ellipse2"></div>
-  <div class="ellipse3"></div>
+    <div class="ellipse_1"></div>
+    <div class="ellipse_2"></div>
+    <div class="ellipse_3"></div>
+    <div class="ellipse_4"></div>
 </body>
 
 </html>

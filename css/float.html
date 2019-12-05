@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-      .float1 {
-        float: left;
-        width: 80px;
-        height: 80px;
-        margin: 10px;
-        margin-left: 0;
-        margin-top: 0;
-        background: orangered;
-      }
+        .float {
+            float: left;
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            background: orangered;
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <section>
-      <div class="float1"></div>
-      <div style="background: lightgrey;">
-        值得强调的是，当你使某个元素浮动并让文字环绕它时，内容的line
-        box被截断了。如果你让一个元素浮动，同时为紧跟着的包含文本的元素设置一个背景色，你会发现背景色会出现在浮动元素下方。
-      </div>
-      <div>
-        如果你想要在浮动元素和环绕的文本之间创建边距，你需要给浮动元素设置外边距。在文本元素上设置外边距只会让其相对于容器缩进。例如在下面这个例子中，你就需要为左侧浮动的图片设置右边距和下边距。
-      </div>
+        <div class="float"></div>
+        <div style="background: #ccc;">
+            值得强调的是，当你使某个元素浮动并让文字环绕它时，内容的line
+            box被截断了。如果你让一个元素浮动，同时为紧跟着的包含文本的元素设置一个背景色，你会发现背景色会出现在浮动元素下方。
+        </div>
+        <div>
+            如果你想要在浮动元素和环绕的文本之间创建边距，你需要给浮动元素设置外边距。在文本元素上设置外边距只会让其相对于容器缩进。
+        </div>
     </section>
-  </body>
+</body>
+
 </html>

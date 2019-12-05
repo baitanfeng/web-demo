@@ -7,41 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        :root {
-            --gap: 10px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        .gap {
-            margin: var(--gap);
-        }
-
-        .form-row {
+        .form-item {
             display: flex;
             flex-direction: column;
-        }
-        .form-inline {
-            flex-direction: row;
+            margin: 10px 0;
         }
 
         .form-input {
-            padding: 10px;
-            outline: none;
-            border: 1px solid #e9e9e9;
-            border-radius: 2px;
+            box-sizing: border-box;
             width: 100%;
-            height: 40px;
+            padding: 10px;
+            border: 1px solid #eee;
+            outline: none;
             transition: all 0.3s;
         }
 
         .form-input:focus:valid {
-            border-color: #0099ff;
+            border-color: green;
         }
+
         .form-input:focus:invalid {
-            border-color: #ff6666;
+            border-color: red;
         }
 
         .form-button {
@@ -58,34 +44,34 @@
             transition: all 0.3s;
         }
 
-        .form-input:placeholder-shown {
+        .field-phone:placeholder-shown {
             width: 100%;
         }
-        .form-input:placeholder-shown + .form-button {
+
+        .field-phone:placeholder-shown+.form-button {
             width: 0;
             opacity: 0;
         }
 
-        .form-input:not(:placeholder-shown) {
+        .field-phone:not(:placeholder-shown) {
             width: calc(75% - 10px);
         }
-        .form-input:not(:placeholder-shown) + .form-button {
+
+        .field-phone:not(:placeholder-shown)+.form-button {
             width: 25%;
         }
     </style>
 </head>
 
 <body>
-    <form class="form">
-        <div class="form-row gap">
+    <form>
+        <div class="form-item">
             <input class="form-input" type="text" name="name" id="name" placeholder="请输入姓名" required />
         </div>
 
-        <div class="form-row gap">
-            <div class="form-row form-inline">
-                <input class="form-input" type="text" name="qrcode" id="qrcode" placeholder="请输入验证码" required />
-                <button class="form-button">获取验证码</button>
-            </div>
+        <div class="form-item" style="flex-direction: row;">
+            <input class="form-input field-phone" type="text" name="phone" id="phone" placeholder="请输入手机号" required />
+            <button class="form-button">获取验证码</button>
         </div>
     </form>
 </body>

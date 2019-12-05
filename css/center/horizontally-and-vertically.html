@@ -2,85 +2,58 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        main {
+            height: 100px;
+            margin: 10px 0;
+            background: orangered;
+        }
 
-    body {
-      background: #f06d06;
-      margin: 10px;
-    }
+        .inner {
+            color: white;
+            background: black;
+        }
 
-    main {
-      background: white;
-      margin: 20px 0;
-      padding: 10px;
-    }
+        .position-center .inner {
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    .position-XY-center {
-      height: 200px;
-    }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .position-XY-center div {
-      position: relative;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      display: inline-block;
+        .grid-center {
+            display: grid;
+        }
 
-      background: black;
-      color: white;
-      padding: 10px;
-    }
-
-    .flex-XY-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      height: 200px;
-    }
-
-    .flex-XY-center div {
-      background: black;
-      color: white;
-      padding: 10px;
-    }
-
-    .grid-XY-center {
-      display: grid;
-
-      height: 200px;
-    }
-
-    .grid-XY-center div {
-      margin: auto;
-
-      background: black;
-      color: white;
-      padding: 10px;
-    }
-  </style>
+        .grid-center .inner {
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
-  <main class="position-XY-center">
-    <div>I'm a block-level element, centered within my parent.</div>
-  </main>
+    <main class="position-center">
+        <div class="inner">horzontal and vertical center</div>
+    </main>
 
-  <main class="flex-XY-center">
-    <div>I'm a block-level element, centered within my parent.</div>
-  </main>
+    <main class="flex-center">
+        <div class="inner">horzontal and vertical center</div>
+    </main>
 
-  <main class="grid-XY-center">
-    <div>I'm centered!</div>
-  </main>
+    <main class="grid-center">
+        <div class="inner">horzontal and vertical center</div>
+    </main>
 </body>
 
 </html>

@@ -2,35 +2,35 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    .blue {
-      background: blue;
-      height: 50px;
-      margin: 10px 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .blue {
+            height: 50px;
+            margin: 10px 0;
+            background: blue;
+        }
 
-    .red-bfc {
-      /* 创建 BFC */
-      overflow: hidden;
-    }
+        .red-bfc {
+            /* 创建 BFC */
+            overflow: hidden;
+        }
 
-    .red-inner {
-      background: red;
-      height: 50px;
-      margin: 10px 0;
-    }
-  </style>
+        .red-inner {
+            height: 50px;
+            margin: 10px 0;
+            background: red;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="blue"></div>
-  <div class="red-bfc">
-    <div class="red-inner">red inner</div>
-  </div>
+    <div class="blue"></div>
+    <div class="red-bfc">
+        <div class="red-inner">red inner</div>
+    </div>
 </body>
 
 </html>

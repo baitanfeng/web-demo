@@ -2,112 +2,57 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        main {
+            height: 100px;
+            margin: 10px 0;
+            background: orangered;
+        }
 
-    body {
-      background: #f06d06;
-      margin: 10px;
-    }
+        .inner {
+            color: white;
+            background: black;
+        }
 
-    main {
-      background: white;
-      margin: 20px 0;
-      padding: 10px;
-    }
+        .table-vertical-center {
+            display: table;
+        }
 
-    .inline-Y-center span {
-      display: inline-block;
-      padding-top: 30px;
-      padding-bottom: 30px;
+        .table-vertical-center .inner {
+            display: table-cell;
+            vertical-align: middle;
+        }
 
-      background: black;
-      color: white;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
+        .position-vertical-center .inner {
+            display: inline-block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
-    .line-height-Y-center div {
-      line-height: 100px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      background: black;
-      color: white;
-      padding: 10px;
-    }
-
-    .table-Y-center {
-      display: table;
-      height: 200px;
-    }
-
-    .table-Y-center p {
-      display: table-cell;
-      vertical-align: middle;
-
-      background: black;
-      color: white;
-      padding: 10px;
-    }
-
-    .flex-Y-center {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 200px;
-    }
-
-    .flex-Y-center p {
-      background: black;
-      color: white;
-      padding: 10px;
-    }
-
-    .position-Y-center {
-      height: 200px;
-    }
-
-    .position-Y-center div {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-
-      background: black;
-      color: white;
-      padding: 10px;
-    }
-  </style>
+        .flex-vertical-center {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
-  <main class="inline-Y-center">
-    <span>i'm a centered line.</span>
-  </main>
+    <main class="table-vertical-center">
+        <div class="inner">vertical center</div>
+    </main>
 
-  <main class="line-height-Y-center">
-    <div>i'm a centered line.</div>
-  </main>
+    <main class="position-vertical-center">
+        <div class="inner">vertical center</div>
+    </main>
 
-  <main class="table-Y-center">
-    <p>I'm vertically centered text in a CSS-created table layout.</p>
-  </main>
-
-  <main class="flex-Y-center">
-    <p>I'm vertically centered of text in a flexbox container.</p>
-  </main>
-
-  <main class="position-Y-center">
-    <div>I'm a block-level element, centered vertically within my parent.</div>
-  </main>
+    <main class="flex-vertical-center">
+        <div class="inner">vertical center</div>
+    </main>
 </body>
 
 </html>

@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-      .btn {
-        padding: 0.3rem 0.8rem;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        background: #58a radial-gradient(hsla(0, 0%, 100%, 0.2), transparent);
-        border-radius: 0.2rem;
-        box-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.5);
-        color: white;
-        text-shadow: 0 -0.05rem 0.05rem rgba(0, 0, 0, 0.5);
-        font-size: 125%;
-        line-height: 1.5;
-        outline: none;
-      }
-      button.cancel {
-        background-color: #c00;
-      }
-      button.ok {
-        background-color: #6b0;
-      }
-      button.outline-cancel {
-        background-color: transparent;
-        color: #c00;
-        border-color: #c00;
-      }
-      button.outline-ok {
-        background-color: transparent;
-        color: #6b0;
-        border-color: #6b0;
-      }
+        .btn {
+            color: white;
+            font-size: 125%;
+            line-height: 1.5;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.2rem;
+            background: radial-gradient(hsla(0, 0%, 100%, 0.2), transparent) #58a;
+            box-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.5);
+            text-shadow: 0 -0.05rem 0.05rem rgba(0, 0, 0, 0.5);
+            outline: none;
+        }
+
+        .btn.ok {
+            background-color: #6b0;
+        }
+
+        .btn.cancel {
+            background-color: #c00;
+        }
+
+        .btn.outline-ok {
+            color: #6b0;
+            border-color: #6b0;
+            background-color: transparent;
+        }
+
+        .btn.outline-cancel {
+            color: #c00;
+            border-color: #c00;
+            background-color: transparent;
+        }
     </style>
-  </head>
-  <body>
-    <button class="btn">button</button>
-    <button class="btn ok">button</button>
-    <button class="btn cancel">button</button>
-    <button class="btn outline-ok">button</button>
-    <button class="btn outline-cancel">button</button>
-  </body>
+</head>
+
+<body>
+    <button class="btn">default</button>
+    <button class="btn ok">ok</button>
+    <button class="btn cancel">cancel</button>
+    <button class="btn outline-ok">outline ok</button>
+    <button class="btn outline-cancel">outline cancel</button>
+</body>
+
 </html>
