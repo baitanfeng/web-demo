@@ -6,9 +6,9 @@ const containerStyle = refreshContainer.style
 
 const frag = document.createDocumentFragment()
 for (let i = 0; i < 50; i++) {
-  const li = document.createElement('li')
-  li.innerText = `${i + 1}`
-  frag.appendChild(li)
+    const li = document.createElement('li')
+    li.innerText = `${i + 1}`
+    frag.appendChild(li)
 }
 refreshContainer.appendChild(frag)
 
@@ -16,105 +16,105 @@ let startY = 0
 let transitionHeight = 0
 
 refreshContainer.addEventListener(
-  'touchstart',
-  event => {
-    startY = event.touches[0].clientY
-    containerStyle.transition = 'transform 0s'
-  },
-  false
+    'touchstart',
+    event => {
+        startY = event.touches[0].clientY
+        containerStyle.transition = 'transform 0s'
+    },
+    false
 )
 
 refreshContainer.addEventListener(
-  'touchmove',
-  event => {
-    transitionHeight = event.touches[0].clientY - startY
-    containerStyle.transform = `translateY(${transitionHeight}px)`
+    'touchmove',
+    event => {
+        transitionHeight = event.touches[0].clientY - startY
+        containerStyle.transform = `translateY(${transitionHeight}px)`
 
-    if (transitionHeight > 0 && transitionHeight <= 50) {
-      refreshText.innerText = '下拉刷新'
-    } else if (transitionHeight > 50) {
-      refreshText.innerText = '释放更新'
-    }
-  },
-  false
+        if (transitionHeight > 0 && transitionHeight <= 50) {
+            refreshText.innerText = '下拉刷新'
+        } else if (transitionHeight > 50) {
+            refreshText.innerText = '释放更新'
+        }
+    },
+    false
 )
 
 refreshContainer.addEventListener(
-  'touchend',
-  event => {
-    const deltaY = event.changedTouches[0].clientY - startY
+    'touchend',
+    event => {
+        const deltaY = event.changedTouches[0].clientY - startY
 
-    containerStyle.transform = 'translateY(0)'
-    if (deltaY > 55) {
-      containerStyle.transition = 'transform 0.5s ease 1s'
-      refreshText.innerText = '更新中...'
-    } else {
-      containerStyle.transition = 'transform 0.5s ease'
-    }
-  },
-  false
+        containerStyle.transform = 'translateY(0)'
+        if (deltaY > 55) {
+            containerStyle.transition = 'transform 0.5s ease 1s'
+            refreshText.innerText = '更新中...'
+        } else {
+            containerStyle.transition = 'transform 0.5s ease'
+        }
+    },
+    false
 )
 
 function getScrollTop() {
-  let scrollTop = 0
+    let scrollTop = 0
 
-  if (document.documentElement && document.documentElement.scrollTop) {
-    scrollTop = document.documentElement.scrollTop
-  } else if (document.body) {
-    scrollTop = document.body.scrollTop
-  }
+    if (document.documentElement && document.documentElement.scrollTop) {
+        scrollTop = document.documentElement.scrollTop
+    } else if (document.body) {
+        scrollTop = document.body.scrollTop
+    }
 
-  return scrollTop
+    return scrollTop
 }
 
 function getClientHeight() {
-  let clientHeight = 0
+    let clientHeight = 0
 
-  if (document.body.clientHeight && document.documentElement.clientHeight) {
-    clientHeight = Math.min(
-      document.body.clientHeight,
-      document.documentElement.clientHeight
-    )
-  } else {
-    clientHeight = Math.max(
-      document.body.clientHeight,
-      document.documentElement.clientHeight
-    )
-  }
+    if (document.body.clientHeight && document.documentElement.clientHeight) {
+        clientHeight = Math.min(
+            document.body.clientHeight,
+            document.documentElement.clientHeight
+        )
+    } else {
+        clientHeight = Math.max(
+            document.body.clientHeight,
+            document.documentElement.clientHeight
+        )
+    }
 
-  return clientHeight
+    return clientHeight
 }
 
 function getScrollHeight() {
-  return Math.max(
-    document.body.scrollHeight,
-    document.documentElement.scrollHeight
-  )
+    return Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+    )
 }
 
 function throttle(method, context) {
-  window.clearTimeout(method.timeoutId)
-  method.timeoutId = window.setTimeout(() => {
-    method.call(context)
-  }, 300)
+    window.clearTimeout(method.timeoutId)
+    method.timeoutId = window.setTimeout(() => {
+        method.call(context)
+    }, 300)
 }
 
 function fetchData() {
-  window.setTimeout(() => {
-    refreshContainer.insertAdjacentHTML(
-      'beforeend',
-      `<li>new item ${+new Date()}</li>`
-    )
-  }, 1000)
+    window.setTimeout(() => {
+        refreshContainer.insertAdjacentHTML(
+            'beforeend',
+            `<li>new item ${+new Date()}</li>`
+        )
+    }, 1000)
 }
 
 window.addEventListener(
-  'scroll',
-  () => {
-    if (getScrollTop() + getClientHeight() === getScrollHeight()) {
-      loadmoreText.innerText = '加载中...'
-      throttle(fetchData)
-    }
-  },
-  false
+    'scroll',
+    () => {
+        if (getScrollTop() + getClientHeight() === getScrollHeight()) {
+            loadmoreText.innerText = '加载中...'
+            throttle(fetchData)
+        }
+    },
+    false
 )

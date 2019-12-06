@@ -2,33 +2,56 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="./demo01.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 400px;
+            height: 200px;
+        }
+
+        .fill {
+            object-fit: fill;
+        }
+
+        .contain {
+            object-fit: contain;
+        }
+
+        .cover {
+            object-fit: cover;
+        }
+
+        .scale-down {
+            object-fit: scale-down;
+        }
+
+        .none {
+            object-fit: none;
+        }
+    </style>
 </head>
 
 <body>
-  <h1>The object-fit Property</h1>
+    <h2>No object-fit:</h2>
+    <img src="./paris.jpg" alt="Paris">
 
-  <h2>No object-fit:</h2>
-  <img src="https://www.w3schools.com/css/paris.jpg" alt="Paris">
+    <h2>object-fit: fill (this is default):</h2>
+    <img class="fill" src="./paris.jpg" alt="Paris">
 
-  <h2>object-fit: fill (this is default):</h2>
-  <img class="fill" src="https://www.w3schools.com/css/paris.jpg" alt="Paris">
+    <h2>object-fit: contain:</h2>
+    <img class="contain" src="./paris.jpg" alt="Paris">
 
-  <h2>object-fit: contain:</h2>
-  <img class="contain" src="https://www.w3schools.com/css/paris.jpg" alt="Paris">
+    <h2>object-fit: cover:</h2>
+    <img class="cover" src="./paris.jpg" alt="Paris">
 
-  <h2>object-fit: cover:</h2>
-  <img class="cover" src="https://www.w3schools.com/css/paris.jpg" alt="Paris">
+    <h2>object-fit: scale-down:</h2>
+    <img class="scale-down" src="./paris.jpg" alt="Paris">
 
-  <h2>object-fit: scale-down:</h2>
-  <img class="scale-down" src="https://www.w3schools.com/css/paris.jpg" alt="Paris">
-
-  <h2>object-fit: none:</h2>
-  <img class="none" src="https://www.w3schools.com/css/paris.jpg" alt="Paris">
+    <h2>object-fit: none:</h2>
+    <img class="none" src="./paris.jpg" alt="Paris">
 </body>
 
 </html>
