@@ -7,6 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        .refresh-text {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            line-height: 50px;
+            text-align: center;
+        }
+
         .refresh-container {
             box-sizing: border-box;
             position: relative;
@@ -26,7 +35,8 @@
 
 <body>
     <main>
-        <ul class="refresh-container"></ul>
+        <div class="refresh-text"></div>
+        <div class="refresh-container"></div>
         <div class="loadmore-text"></div>
     </main>
 
