@@ -1,10 +1,10 @@
 {
-    let points = [
+    const points = [
         {x: 0, y: 0},
         {x: 1, y: 1}
     ];
 
-    points.dist = function() {
+    points.dist = function () {
         let p1 = this[0];
         let p2 = this[1];
         let a = p2.x - p1.x;

@@ -1,15 +1,23 @@
 {
-    let text = 'testing: 1, 2, 3';
-    let pattern = /\d+/g;
+    const text = 'testing: 1, 2, 3';
+    const pattern = /\d+/g;
     pattern.test(text);
     text.search(pattern);
     text.match(pattern);
     text.replace(pattern, "#");
     text.split(/\D+/);
+
+    console.log(pattern.test(text));
+    console.log(text.search(pattern));
+    console.log(text.match(pattern));
+    console.log(text.replace(pattern, "#"));
+    console.log(text.split(/\D+/));
 }
 
 {
-    let s = 'test', n = 1, b = true;
+    let s = 'test',
+        n = 1,
+        b = true;
     let S = new String(s);
     let N = new Number(n);
     let B = new Boolean(b);
@@ -37,6 +45,7 @@
 
 {
     var scope = "global";
+
     function checkscope() {
         var scope = 'local';
         return scope;
@@ -46,6 +55,7 @@
 
 {
     let scope = 'global';
+
     function checkscope() {
         let scope = 'local';
         return scope;
@@ -55,6 +65,7 @@
 
 {
     var scope = 'global';
+
     function f() {
         console.log(scope);
         var scope = 'local';
@@ -65,6 +76,7 @@
 
 {
     var scope = 'global';
+
     function f() {
         console.log(scope);
         let scope = 'local';
