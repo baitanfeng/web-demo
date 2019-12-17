@@ -10,26 +10,26 @@
         enumerable: false,
         configurable: true
     });
-    o.x;
-    Object.keys(o);
-    Object.getOwnPropertyDescriptor(o, "x");
+    console.log(o.x);
+    console.log(Object.keys(o));
+    console.log(Object.getOwnPropertyDescriptor(o, "x"));
 
     Object.defineProperty(o, "x", {
         writable: false
     });
-    Object.getOwnPropertyDescriptor(o, "x");
+    console.log(Object.getOwnPropertyDescriptor(o, "x"));
 
     Object.defineProperty(o, "x", {
         value: 2
     });
-    Object.getOwnPropertyDescriptor(o, "x");
+    console.log(Object.getOwnPropertyDescriptor(o, "x"));
 
     Object.defineProperty(o, "x", {
         get: function() {
             return 0;
         }
     });
-    Object.getOwnPropertyDescriptor(o, "x");
+    console.log(Object.getOwnPropertyDescriptor(o, "x"));
 }
 
 {

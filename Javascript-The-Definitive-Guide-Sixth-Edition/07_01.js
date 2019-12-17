@@ -13,7 +13,7 @@
 
 {
     var a = ['ant', 'Bug', 'cat', 'Dog'];
-    a.sort();
+    console.log(a.sort());
     a.sort((s, t) => {
         var prev = s.toLowerCase();
         var next = t.toLowerCase();
