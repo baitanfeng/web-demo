@@ -59,7 +59,7 @@
 }
 
 {
-    var isArray = Function.isArray || function(o) {
+    var isArray = Array.isArray || function(o) {
         return typeof o === 'object' &&
             Object.prototype.toString.call(o) === '[object Array]';
     };
@@ -73,12 +73,12 @@
         return Array.prototype.slice.call(a, from, to);
     };
     Array.map = Array.map || function(a, f, thisArg) {
-        return Array.prototype.map(a, f, thisArg);
+        return Array.prototype.map.call(a, f, thisArg);
     };
 }
 
 {
     var s = "JavaScript";
-    Array.prototype.join.call(s, ' ');
+    console.log(Array.prototype.join.call(s, ' '));
     Array.prototype.map.call(s, x => x.match(/[^aeiou]/)).join("");
 }

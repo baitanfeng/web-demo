@@ -51,11 +51,11 @@
     }
 
     var c = counter(), d = counter();
-    c.count();
-    d.count();
+    console.log(c.count());
+    console.log(d.count());
     c.reset();
-    c.count();
-    d.count();
+    console.log(c.count());
+    console.log(d.count());
 }
 
 {

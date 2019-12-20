@@ -1,6 +1,6 @@
 {
-    var quote = /"([^"]*)"/g;
-    var text = '"test"';
+    const quote = /"([^"]*)"/g;
+    const text = '"test"';
     text.replace(quote, ' “$1” ');
 }
 
@@ -9,8 +9,8 @@
 }
 
 {
-    var url = /(\w+):\/\/([\w.]+)\/(\S*)/;
-    var text = "Visit my blog at http://www.example.com/~david";
+    const url = /(\w+):\/\/([\w.]+)\/(\S*)/;
+    const text = "Visit my blog at http://www.example.com/~david";
     text.match(url);
 }
 
@@ -19,21 +19,21 @@
 }
 
 {
-    var zipcode = new RegExp('\\d{5}', 'g');
+    const zipcode = new RegExp('\\d{5}', 'g');
 }
 
 {
-    var pattern = /Java/g;
-    var text = 'JavaScript is more fun than Java!';
-    var result;
+    const pattern = /Java/g;
+    const text = 'JavaScript is more fun than Java!';
+    let result;
     while((result = pattern.exec(text)) != null) {
         console.log(`Matched ${result[0]} at position ${result.index}; next search begins at ${pattern.lastIndex};`)
     }
 }
 
 {
-    var pattern = /Java/g;
-    var text = 'JavaScript is more fun than Java!';
+    const pattern = /Java/g;
+    const text = 'JavaScript is more fun than Java!';
     console.log(pattern.exec(text));
     console.log(pattern.exec(text));
     console.log(pattern.exec(text));
