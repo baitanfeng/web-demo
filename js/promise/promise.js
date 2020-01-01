@@ -1,6 +1,6 @@
-const PENDING = 0;
-const FULFILLED = 1;
-const REJECTED = 2;
+const PENDING = 'pending';
+const FULFILLED = 'fulfilled';
+const REJECTED = 'rejected';
 
 function isObjectOrFunction(x) {
     return x !== null && (typeof x === 'object' || typeof x === 'function');
@@ -23,13 +23,19 @@ function noop() {}
 function ESPromise(fn) {
     this._state = PENDING;
     this._result = undefined;
+
+    // 保存 then 回调数组
     this._subscribers = [];
 
-    fn(value => {
-        resolve(this, value)
-    }, reason => {
-        reject(this, reason)
-    });
+    try {
+        fn(value => {
+            resolve(this, value)
+        }, reason => {
+            reject(this, reason)
+        });
+    } catch (e) {
+        reject(this, e);
+    }
 }
 
 ESPromise.prototype.then = function(onFulfilled, onRejected) {
@@ -39,7 +45,7 @@ ESPromise.prototype.then = function(onFulfilled, onRejected) {
     const { _state, _result } = parent;
     if (_state === FULFILLED || _state === REJECTED) {
         const callback = _state === FULFILLED ? onFulfilled : onRejected;
-        invokeCallback(_state, child, callback, _result);
+        asyncCallback(() => invokeCallback(_state, child, callback, _result));
     } else {
         subscribe(parent, child, onFulfilled, onRejected);
     }
@@ -90,7 +96,9 @@ ESPromise.race = function (entries) {
     }
 
     return new constructor((resolve, reject) => {
-        for (let i = 0; i < entries.length; i++) {
+        let { length } = entries;
+
+        for (let i = 0; i < length; i++) {
             constructor.resolve(entries[i]).then(resolve, reject);
         }
     });
@@ -108,7 +116,7 @@ ESPromise.all = function (entries) {
         let remaining = length;
         let result = new Array(length);
 
-        for (let i = 0; i < entries.length; i++) {
+        for (let i = 0; i < length; i++) {
             constructor.resolve(entries[i]).then(value => {
                 remaining--;
                 result[i] = value;
@@ -123,13 +131,55 @@ ESPromise.all = function (entries) {
     });
 }
 
-function invokeCallback(settled, promise, callback, result) {
-    if (isFunction(callback)) {
-        let value = callback(result);
-        resolve(promise, value);
+function resolve(promise, value) {
+    if (isObjectOrFunction(value) && isFunction(value.then)) {
+        handleThenable(promise, value);
     } else {
-        settled === FULFILLED ? fulfill(promise, result) : reject(promise, result);
+        fulfill(promise, value);
     }
+}
+
+function handleThenable(promise, thenable) {
+    asyncCallback(promise => {
+        let sealed = false;
+    
+        thenable.then(value => {
+            if (sealed) { return; }
+            sealed = true;
+    
+            /* 
+            避免无限循环
+            */
+            if (thenable !== value ) {
+                resolve(promise, value);
+            } else {
+                fulfill(promise, value);
+            }
+        }, reason => {
+            if (sealed) { return; }
+            sealed = true;
+    
+            reject(promise, reason);
+        });
+    }, promise);
+}
+
+function fulfill(promise, value) {
+    if (promise._state !== PENDING) { return; }
+
+    promise._state = FULFILLED;
+    promise._result = value;
+
+    asyncCallback(publish, promise);
+}
+
+function reject(promise, reason) {
+    if (promise._state !== PENDING) { return; }
+
+    promise._state = REJECTED;
+    promise._result = reason;
+
+    asyncCallback(publish, promise);
 }
 
 function subscribe(parent, child, onFulfilled, onRejected) {
@@ -141,58 +191,8 @@ function subscribe(parent, child, onFulfilled, onRejected) {
     _subscribers[length + 2] = onRejected;
 
     if (length === 0 && (_state === FULFILLED || _state === REJECTED)) {
-        publish(parent);
+        asyncCallback(publish, parent);
     }
-}
-
-function resolve(promise, value) {
-    if (isObjectOrFunction(value)) {
-        if (isFunction(value.then)) {
-            handleThenable(promise, value);
-        } else {
-            fulfill(promise, value);
-        }
-    } else {
-        fulfill(promise, value);
-    }
-}
-
-function handleThenable(promise, thenable) {
-    let sealed = false;
-
-    thenable.then(value => {
-        if (sealed) { return; }
-        sealed = true;
-
-        if (thenable !== value ) {
-            resolve(promise, value);
-        } else {
-            fulfill(promise, value);
-        }
-    }, reason => {
-        if (sealed) { return; }
-        sealed = true;
-
-        reject(promise, reason);
-    });
-}
-
-function fulfill(promise, value) {
-    if (promise._state !== PENDING) { return; }
-
-    promise._state = FULFILLED;
-    promise._result = value;
-
-    publish(promise);
-}
-
-function reject(promise, reason) {
-    if (promise._state !== PENDING) { return; }
-
-    promise._state = REJECTED;
-    promise._result = reason;
-
-    publish(promise);
 }
 
 function publish(promise) {
@@ -210,4 +210,28 @@ function publish(promise) {
     }
 
     promise._subscribers.length = 0;
+}
+
+function invokeCallback(settled, promise, callback, result) {
+    let hasCallback = isFunction(callback);
+    let value = hasCallback ? callback(result) : result;
+
+    if (promise._state !== PENDING) {
+        // noop
+    } else if (hasCallback) {
+        resolve(promise, value);
+    } else if (settled === FULFILLED) {
+        fulfill(promise, value);
+    } else if (settled === REJECTED) {
+        reject(promise, value);
+    }
+}
+
+function asyncCallback (callback, args) {
+    /* 
+    实际情况比这要复杂得多，这里使用 setTimeout 代表 这是一个异步回调
+    */
+    setTimeout(() => {
+        callback(args);
+    });
 }

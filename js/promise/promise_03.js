@@ -17,7 +17,6 @@
         console.log(3, thenPromise);
     });
 
-    // 上面的代码打印如下
     // 1 Promise {<pending>}
     // 2
     // 3 Promise {<resolved>: 'resolveValue'}
@@ -35,7 +34,6 @@
         console.log(3, thenPromise);
     });
 
-    // 上面的代码打印如下
     // 1 Promise {<pending>}
     // 2
     // 3 Promise {<resolved>: undefined}
@@ -54,7 +52,6 @@
         console.log(3, thenPromise);
     });
 
-    // 上面的代码打印如下
     // 1 Promise {<pending>}
     // 2
     // 3 Promise {<resolved>: 'resolveValue'}
@@ -70,7 +67,6 @@
         console.log(3, thenPromise);
     });
 
-    // 上面的代码打印如下
     // 1 Promise {<pending>}
     // 3 Promise {<resolved>: 'resolveValue'}
 }
@@ -85,7 +81,6 @@
         console.log(3, thenPromise);
     });
 
-    // 上面的代码打印如下
     // 1 Promise {<pending>}
     // 3 Promise {<resolved>: 'resolveValue'}
 }
@@ -105,7 +100,6 @@
         console.log(3, thenPromise);
     });
 
-    // 上面的代码打印如下
     // 1 Promise {<pending>}
     // 2
     // 3 Promise {<resolved>: undefined}
@@ -121,7 +115,6 @@
         console.log(3, thenPromise);
     });
 
-    // 上面的代码打印如下
     // 2
     // 1 Promise {<pending>}
     // 3 Promise {<resolved>: undefined}
