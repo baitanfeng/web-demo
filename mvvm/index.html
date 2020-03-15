@@ -10,15 +10,7 @@
         <input type="text" v-model="message">
         {{message}}
     </div>
-    <script src="./compile.js"></script>
-    <script src="./mvvm.js"></script>
-    <script>
-        let vm = new MVVM({
-            el: '#app',
-            data: {
-                message: 'hello'
-            }
-        });
-    </script>
+
+    <script type="module" src="./index.js"></script>
 </body>
 </html>
