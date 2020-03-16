@@ -14,6 +14,10 @@ export function isDirective(name = '') {
     return name.startsWith('v-');
 }
 
+export function isEventDirective(name = '') {
+    return name.startsWith('v-on:');
+}
+
 export function node2fragment(el) {
     const fragment = document.createDocumentFragment();
 

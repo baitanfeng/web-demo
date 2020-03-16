@@ -2,6 +2,7 @@ import {
     isElementNode,
     node2fragment,
     isDirective,
+    isEventDirective,
     getTextVal,
     getVal,
     setVal
@@ -25,7 +26,6 @@ export default class Compile {
         Array.from(childNodes).forEach(node => {
             if (isElementNode(node)) { // 元素节点
                 this.compileElement(node);
-                this.compile(node);
             } else { // 文本节点
                 this.compileText(node);
             }
@@ -39,9 +39,14 @@ export default class Compile {
             if (isDirective(attrName)) {
                 const type = attrName.slice(2);
                 const expr = attr.value;
-                CompileUtil[type](node, this.vm, expr);
+                if (isEventDirective(attrName)) {
+                    CompileUtil['event'](node, this.vm, expr, type);
+                } else {
+                    CompileUtil[type](node, this.vm, expr);
+                }
             }
         });
+        this.compile(node);
     }
 
     compileText(node) {
@@ -54,6 +59,13 @@ export default class Compile {
 }
 
 const CompileUtil = {
+    event(node, vm, expr, type) {
+        const eventType = type.split(':')[1];
+        const fn = vm.$options.methods && vm.$options.methods[expr];
+        if (eventType && typeof fn === 'function') {
+            node.addEventListener(eventType, fn.bind(vm), false);
+        }
+    },
     text(node, vm, expr) {
         const updateFn = this.updater['textUpdater'];
         updateFn && updateFn(node, getTextVal(vm, expr));

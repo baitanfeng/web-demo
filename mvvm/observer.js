@@ -14,11 +14,12 @@ function observe(data) {
 
     Object.keys(data).forEach(key => {
         defineReactive(data, key, data[key]);
-        observe(data[key]);
     });
 }
 
 function defineReactive(obj, key, value) {
+    observe(value);
+
     let dep = new Dep();
 
     Object.defineProperty(obj, key, {

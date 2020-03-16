@@ -3,12 +3,13 @@ import Compile from './compile.js';
 
 export default class MVVM {
     constructor(options) {
+        this.$options = options;
         this.$el = options.el;
         this.$data = options.data;
 
         if (this.$el) {
-            new Observer(this.$data);
             this.proxyData(this.$data);
+            new Observer(this.$data);
             new Compile(this.$el, this);
         }
     }
@@ -24,7 +25,7 @@ export default class MVVM {
                 set(newValue) {
                     data[key] = newValue;
                 }
-            })
-        })
+            });
+        });
     }
 }

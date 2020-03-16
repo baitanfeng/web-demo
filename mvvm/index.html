@@ -8,7 +8,8 @@
 <body>
     <div id="app">
         <input type="text" v-model="message">
-        {{message}}
+        {{message}} {{count}}
+        <button v-on:click="add">+</button>
     </div>
 
     <script type="module" src="./index.js"></script>
