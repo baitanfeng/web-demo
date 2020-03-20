@@ -2,10 +2,10 @@ import Dep from './dep.js';
 import { getVal } from './utils.js';
 
 export default class Watcher {
-    constructor(vm, expr, callback) {
+    constructor(vm, expr, cb) {
         this.vm = vm;
         this.expr = expr;
-        this.callback = callback;
+        this.cb = cb;
 
         this.get();
     }
@@ -17,6 +17,6 @@ export default class Watcher {
     }
 
     update() {
-        this.callback();
+        this.cb();
     }
 }

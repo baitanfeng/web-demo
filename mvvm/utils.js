@@ -6,6 +6,18 @@ export function isElementNode(node) {
     return node.nodeType === Node.ELEMENT_NODE;
 }
 
+export function query(el) {
+    if (typeof el === 'string') {
+        let selected = document.querySelector(el);
+        if (!selected) {
+            return document.createElement('div');
+        }
+        return selected;
+    } else {
+        return el;
+    }
+}
+
 /**
  * 判断属性名是不是 v- 开头
  * @param {String} name 属性名
@@ -50,5 +62,18 @@ export function setVal(vm, expr, value) {
 export function getTextVal(vm, expr) {
     return expr.replace(/\{\{([^}]+)\}\}/g, (...args) => {
         return getVal(vm, args[1]);
+    });
+}
+
+export function proxy(target, sourceKey, key) {
+    Object.defineProperty(target, key, {
+        enumerable: true,
+        configurable: true,
+        get() {
+            return target[sourceKey][key];
+        },
+        set(val) {
+            target[sourceKey][key] = val;
+        }
     });
 }

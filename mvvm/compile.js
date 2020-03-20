@@ -5,13 +5,15 @@ import {
     isEventDirective,
     getTextVal,
     getVal,
-    setVal
+    setVal,
+    query
 } from './utils.js';
 import Watcher from './watcher.js';
 
 export default class Compile {
     constructor(el, vm) {
-        this.el = isElementNode(el) ? el : document.querySelector(el);
+        // this.el = isElementNode(el) ? el : document.querySelector(el);
+        this.el = query(el);
         this.vm = vm;
 
         if (this.el) {
