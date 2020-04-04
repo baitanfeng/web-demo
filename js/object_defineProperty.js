@@ -22,6 +22,18 @@
 }
 
 {
+    let obj = {};
+    let dataDef = {};
+    dataDef.get = function () {
+        return 'get';
+    };
+    Object.defineProperty(obj, 'value', dataDef);
+
+    let p = Object.getOwnPropertyDescriptor(obj, 'value');
+    console.log(p); // {set: undefined, enumerable: false, configurable: false, get: ƒ}
+}
+
+{
     function MyClass () {}
     MyClass.prototype.x = 1;
 
