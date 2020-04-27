@@ -36,54 +36,23 @@ const config = {
   //   它会生成用于开发环境的最佳品质的source map
   devtool: MODE === NODE_ENV.PRODUCTION ? 'source-map' : 'eval-source-map',
 
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-    // 默认是 localhost。如果你希望服务器外部可访问，指定如下
-    host: '0.0.0.0',
-    // hot: true,
-    // open: true,
-    // https: true
-
-    // 在 localhost:3000 上有后端服务的话，可以这样启用代理
-    proxy: {
-      // 请求到 /api/users 现在会被代理到请求
-      // http://localhost:3000/api/users
-      '/api': 'http://localhost:3000',
-
-      // 如果不想始终传递 /api, 则需要重写路径
-      '/api': {
-        target: 'http://localhost:3000',
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
-
-      // 实际api地址为 http://www.dell-lee.com/react/api/header.json
-      // 目前header.json不可用，但提供了个临时的demo.json
-      // 即临时api地址为 http://www.dell-lee.com/react/api/demo.json
-      '/react/api': {
-        target: 'http://www.dell-lee.com',
-        pathRewrite: {
-          'header.json': 'demo.json'
-        }
-      },
-
-      // 默认情况下，不接受运行在HTTPS上，且使用了无效证书的后端服务器
-      // 如果你想要接受，修改配置如下
-      '/api': {
-        target: 'https://other-server.example.com',
-        secure: false
-      }
-    },
-  },
-
   // entry: './src/index.js',
   // entry: path.resolve(__dirname, 'src/index.js'),
   entry: {
     main: './src/index.js',
-    // another: './src/another.js',
+    list: './src/list.js',
+  },
+
+  resolve: {
+    // 解析的步骤，先检索有没有js后缀的此文件，若有检索完成，解析文件
+    // 若没有，继续检索有没有jsx后缀的此文件，若有检索完成，解析文件
+    // 若没有，则检索失败，报未找到此文件的错误
+    // 因此，合理的填写扩展名能加快开发速度，过度的填写扩展名会降低解析速度
+    extensions: ['.js', '.jsx'],
+
+    alias: {
+      'src': path.resolve(__dirname, 'src')
+    }
   },
 
   output: {
@@ -100,6 +69,7 @@ const config = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
+      include: path.resolve(__dirname, 'src'),
       use: 'babel-loader'
     }, {
       test: /\.(jpg|png|gif|svg|eot|ttf|woff|woff2)$/,
@@ -140,12 +110,15 @@ const config = {
     new HtmlWebpackPlugin({
       title: 'webpack4 demo',
       template: './src/index.html',
+      filename: 'index.html',
+      excludeChunks: ['list']
     }),
-    // new HtmlWebpackPlugin({
-    //     title: 'webpack4 demo',
-    //     template: './src/index.html',
-    //     filename: 'test.html'
-    // }),
+    new HtmlWebpackPlugin({
+        title: 'webpack4 demo',
+        template: './src/index.html',
+        filename: 'list.html',
+        excludeChunks: ['main']
+    }),
     // new webpack.HotModuleReplacementPlugin(),
     // new BundleAnalyzerPlugin(),
     new LodashModuleReplacementPlugin(),

@@ -9,7 +9,8 @@ import {
 // import _ from 'lodash';
 // import _ from 'lodash-es';
 
-import './index.css';
+// import './index.css';
+import 'src/index.css'
 
 new Header();
 createAvatar();
