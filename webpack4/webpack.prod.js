@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -45,5 +46,9 @@ module.exports = {
         filename: '[name]_[hash].css',
         chunkFilename: '[id]_[hash].css'
       }),
+      // new WorkboxWebpackPlugin.GenerateSW({
+      //   clientsClaim: true,
+      //   skipWaiting: true
+      // })
     ]
 };

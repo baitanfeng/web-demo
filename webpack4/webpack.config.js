@@ -60,11 +60,21 @@ const config = {
         }
       },
 
+      // 实际api地址为 http://www.dell-lee.com/react/api/header.json
+      // 目前header.json不可用，但提供了个临时的demo.json
+      // 即临时api地址为 http://www.dell-lee.com/react/api/demo.json
+      '/react/api': {
+        target: 'http://www.dell-lee.com',
+        pathRewrite: {
+          'header.json': 'demo.json'
+        }
+      },
+
       // 默认情况下，不接受运行在HTTPS上，且使用了无效证书的后端服务器
       // 如果你想要接受，修改配置如下
       '/api': {
         target: 'https://other-server.example.com',
-        secure: true
+        secure: false
       }
     },
   },
