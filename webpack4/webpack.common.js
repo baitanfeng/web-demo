@@ -5,23 +5,9 @@ const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const merge = require('webpack-merge');
-const devConfig = require('./webpack.dev');
-const prodConfig = require('./webpack.prod');
 
-const NODE_ENV = {
-  PRODUCTION: 'production',
-  DEVELOPMENT: 'development'
-};
-const MODE = NODE_ENV.PRODUCTION;
-
-process.env.NODE_ENV = MODE;
-
-const config = {
-  mode: MODE,
-
+module.exports = {
   // 对于生产环境
   // --(none) (省略devtool选项) - 不生成source map。这是一个不错的选择
   // --source-map - 整个source-map作为一个单独的文件生成，
@@ -34,7 +20,7 @@ const config = {
   // --eval-source-map - 初始化source map时比较慢，但是会在重新构建时提供比较快的速度，
   //   并且生成实际的文件，行数能够正确映射，因为会映射到原始代码中，
   //   它会生成用于开发环境的最佳品质的source map
-  devtool: MODE === NODE_ENV.PRODUCTION ? 'source-map' : 'eval-source-map',
+  // devtool: MODE === NODE_ENV.PRODUCTION ? 'source-map' : 'eval-source-map',
 
   // entry: './src/index.js',
   // entry: path.resolve(__dirname, 'src/index.js'),
@@ -53,16 +39,6 @@ const config = {
     alias: {
       'src': path.resolve(__dirname, 'src')
     }
-  },
-
-  output: {
-    filename: MODE === NODE_ENV.PRODUCTION ? '[name]_[contenthash].js' : '[name].js',
-    // filename: '[id]_[chunkhash].js',
-    chunkFilename: MODE === NODE_ENV.PRODUCTION ? '[name]_[contenthash].js' : '[name].js',
-
-    // path: path.resolve(__dirname, 'dist'),
-    // publicPath: 'https://cdn.example.com',
-    // publicPath: '/'
   },
 
   module: {
@@ -119,41 +95,6 @@ const config = {
         filename: 'list.html',
         excludeChunks: ['main']
     }),
-    // new webpack.HotModuleReplacementPlugin(),
-    // new BundleAnalyzerPlugin(),
     new LodashModuleReplacementPlugin(),
   ],
-  optimization: {
-    // 块/模块分割
-    splitChunks: {
-      chunks: 'all', // 同步代码和异步代码都进行分割
-      // minSize: 0, // 0意思就是只要块大于0KB，就进行分割，也即一定会进行分割
-      minSize: 20480, // 只在块大于20KB时，才会进行分割
-      maxSize: 102400, // 尝试进行每块最大为100KB的分割，若能分割就分割，若不能分割就不分割
-      // maxSize: 0, // 0意思就是对需要分割的块，尝试进行每块最大为0KB的分割，也即一定不会进行再分
-      name: false,
-
-      // 分割同步代码时会按如下规则去分割
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          // filename: 'vendors.js',
-          enforce: true
-        },
-        default: {
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    }
-  }
-}
-
-module.exports = (env) => {
-  if (env && env.production) {
-    return merge(config, prodConfig);
-  } else {
-    return merge(config, devConfig);
-  }
 }

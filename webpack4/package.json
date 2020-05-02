@@ -4,12 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
-    "analyse": "webpack --profile --json > stats.json --env.production",
+    "analyse": "webpack --profile --json > stats.json --config webpack.analyse.js",
     "watch": "webpack --watch",
     "start": "webpack-dev-server",
     "server": "node server.js",
-    "dev": "webpack",
-    "build": "webpack --env.production"
+    "dev": "webpack --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "keywords": [],
   "author": "MuFeng",
