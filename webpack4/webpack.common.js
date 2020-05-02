@@ -26,7 +26,7 @@ module.exports = {
   // entry: path.resolve(__dirname, 'src/index.js'),
   entry: {
     main: './src/index.js',
-    list: './src/list.js',
+    // list: './src/list.js',
   },
 
   resolve: {
@@ -89,12 +89,12 @@ module.exports = {
       filename: 'index.html',
       excludeChunks: ['list']
     }),
-    new HtmlWebpackPlugin({
-        title: 'webpack4 demo',
-        template: './src/index.html',
-        filename: 'list.html',
-        excludeChunks: ['main']
-    }),
+    // new HtmlWebpackPlugin({
+    //     title: 'webpack4 demo',
+    //     template: './src/index.html',
+    //     filename: 'list.html',
+    //     excludeChunks: ['main']
+    // }),
     new LodashModuleReplacementPlugin(),
   ],
 }

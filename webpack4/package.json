@@ -6,7 +6,7 @@
   "scripts": {
     "analyse": "webpack --profile --json > stats.json --config webpack.analyse.js",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "server": "node server.js",
     "dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"

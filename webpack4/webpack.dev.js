@@ -11,7 +11,7 @@ const config = {
     compress: true,
     port: 9000,
     // 默认是 localhost。如果你希望服务器外部可访问，指定如下
-    host: '0.0.0.0',
+    // host: '0.0.0.0',
     hot: true,
     open: true,
     // https: true
