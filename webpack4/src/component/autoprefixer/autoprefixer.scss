@@ -1,0 +1,17 @@
+.input::placeholder {
+  color: red;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+  background-image: url('./avatar@1x.png');
+}
+
+@media (min-resolution: 2dppx) {
+  .image {
+    width: 150px;
+    height: 150px;
+    background-image: url('./avatar@2x.png');
+  }
+}

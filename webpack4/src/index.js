@@ -8,18 +8,21 @@ import {
 import _ from 'lodash-es';
 
 import './index.css';
+import autoprefixer from './component/autoprefixer/autoprefixer';
 
 avatar();
 iconfont();
 HMR();
+autoprefixer();
 
 add(1, 2);
 console.log(_.join([1, 2, 3]));
 
-document.addEventListener('click', () => {
-  import( /* webpackPrefetch: true */ './component/prefetch/prefetch').then(({
-    default: fn
-  }) => {
-    fn();
-  })
-})
+document.addEventListener('click', async () => {
+  try {
+    const module = await import( /* webpackPrefetch: true */ './component/prefetch/prefetch' );
+    module.default();
+  } catch (error) {
+    console.error(error)
+  }
+});
