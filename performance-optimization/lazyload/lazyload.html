@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="dns-prefetch" href="https://gw.alicdn.com">
+  <link rel="dns-prefetch" href="https://polyfill.io">
+  <link rel="preload" as="image" href="./150_ccc_fff.png">
+  <style>
+    .img {
+      width: 300px;
+      height: 150px;
+    }
+  </style>
+</head>
+
+<body>
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/imgextra/i3/1453939/O1CN01VNpf8q1ey6hZfGfYz_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tfs/TB17emto4n1gK0jSZKPXXXvUXXa-1035-390.png_790x10000.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tps/i4/TB1D7.GD7L0gK0jSZFtSutQCXXa.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tps/i4/TB1LUblE1H2gK0jSZJnSuuT1FXa.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tps/i4/TB1HqXRFrH1gK0jSZFwSuw7aXXa.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/imgextra/i4/939554/O1CN01DdVEMB2KRmbzMDoTo_!!939554-0-lubanu.jpg_790x10000Q75.jpg_.webp">
+
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/imgextra/i4/1453939/O1CN01uJj95M1ey6hV4d0Qa_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/imgextra/i3/1734143/O1CN015Qm6EU1gTXUzvoZXE_!!1734143-0-lubanu.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/imgextra/i1/1453939/O1CN01PbUI6D1ey6hT2aZLE_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/imgextra/i2/1453939/O1CN01BkD1lK1ey6hTNyzXX_!!1453939-0-lubanu.jpg_790x10000Q75.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/bao/upload/TB1f7H4jUY1gK0jSZFCXXcwqXXa.png_170x10000.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tfs/TB1ISdWSFXXXXbFXXXXXXXXXXXX-146-147.png_110x10000.jpg_.webp">
+
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tfs/TB1Jc0fSFXXXXXTapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tfs/TB1Jc0fSFXXXXXTapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp">
+  <img alt="" class="img lazy" src="./150_ccc_fff.png" data-src="https://gw.alicdn.com/tfs/TB12CFXSFXXXXcpapXXXXXXXXXX-146-147.png_110x10000.jpg_.webp">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lazyImages = document.querySelectorAll('img.lazy');
+
+      let lazyImageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let lazyImage = entry.target;
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.classList.remove('lazy');
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      });
+
+      lazyImages.forEach(lazyImage => {
+        lazyImageObserver.observe(lazyImage);
+      });
+    })
+  </script>
+</body>
+
+</html>
