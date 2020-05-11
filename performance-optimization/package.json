@@ -1,0 +1,15 @@
+{
+  "name": "performance-optimization",
+  "version": "1.0.0",
+  "description": "- css，UI渲染引擎\r - js，JS解析引擎",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "intersection-observer": "^0.10.0"
+  }
+}

@@ -23,36 +23,8 @@
     <source data-src="./chrome.mp4?2" type="video/mp4">
   </video>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const lazyVideos = document.querySelectorAll("video.lazy");
-
-      let lazyVideoObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            let lazyVideo = entry.target;
-            for (const source in lazyVideo.children) {
-              let videoSource = lazyVideo.children[source];
-              if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-                videoSource.src = videoSource.dataset.src;
-              }
-            }
-
-            lazyVideo.load();
-            lazyVideo.classList.remove('lazy');
-            lazyVideoObserver.unobserve(lazyVideo);
-          }
-        });
-      }, {
-        rootMargin: '0px 0px 256px 0px'
-      });
-
-      lazyVideos.forEach(lazyVideo => {
-        lazyVideoObserver.observe(lazyVideo);
-      });
-    });
-  </script>
+  <script src="./intersection-observer.js"></script>
+  <script src="./script.js" async></script>
 </body>
 
 </html>
