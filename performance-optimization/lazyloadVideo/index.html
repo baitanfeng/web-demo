@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .video {
+      width: 300px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <video class="video" controls preload="metadata" poster="https://gw.alicdn.com/tps/i4/TB1OTxnFAL0gK0jSZFxSutWHVXa.jpg_790x10000Q75.jpg_.webp">
+    <source src="./chrome.webm?3" type="video/webm">
+    <source src="./chrome.mp4?3" type="video/mp4">
+  </video>
+  <video class="video lazy" controls preload="none" poster="https://gw.alicdn.com/tps/i4/TB1OTxnFAL0gK0jSZFxSutWHVXa.jpg_790x10000Q75.jpg_.webp">
+    <source data-src="./chrome.webm?2" type="video/webm">
+    <source data-src="./chrome.mp4?2" type="video/mp4">
+  </video>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lazyVideos = document.querySelectorAll("video.lazy");
+
+      let lazyVideoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let lazyVideo = entry.target;
+            for (const source in lazyVideo.children) {
+              let videoSource = lazyVideo.children[source];
+              if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                videoSource.src = videoSource.dataset.src;
+              }
+            }
+
+            lazyVideo.load();
+            lazyVideo.classList.remove('lazy');
+            lazyVideoObserver.unobserve(lazyVideo);
+          }
+        });
+      }, {
+        rootMargin: '0px 0px 256px 0px'
+      });
+
+      lazyVideos.forEach(lazyVideo => {
+        lazyVideoObserver.observe(lazyVideo);
+      });
+    });
+  </script>
+</body>
+
+</html>
