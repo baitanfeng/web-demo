@@ -215,11 +215,7 @@ obj1.getName()(); // local local (非严格模式下)
 ### 手写 apply call
 
 ```
-if (!Function.prototype.apply) (function () {
-  function isObject (obj) {
-    return obj !== null && typeof obj === 'object';
-  }
-
+if (!Function.prototype.apply) {
   Object.defineProperty(Function.prototype, 'apply', {
     enumerable: false,
     writable: true,
@@ -228,22 +224,16 @@ if (!Function.prototype.apply) (function () {
       const thatFn = this;
       const [that, args = []] = [...arguments];
 
-      if (typeof thatFn !== 'function') {
-        throw new TypeError(`${thatFn} is not a function`);
-      }
+      // ... 省略完整性判断及处理
 
-      if (!isObject(that)) {
-        return thatFn(...args);
-      }
-
-      const key = Symbol('thatFnKey');
+      const key = Symbol();
       that[key] = thatFn;
       const result = that[key](...args);
       delete that[key];
       return result;
     }
   });
-})();
+}
 ```
 
 ### 手写 bind
@@ -276,3 +266,6 @@ if (!Function.prototype.bind) {
   });
 }
 ```
+
+### 了解 Promise
+
