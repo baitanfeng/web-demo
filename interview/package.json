@@ -1,0 +1,15 @@
+{
+  "name": "interview",
+  "version": "1.0.0",
+  "description": "```\r const container = document.createElement('div');\r for (let i = 0; i < 10; i++) {\r   const link = document.createElement('a');\r   link.href = '#';\r   link.textContent = i.toString();\r   link.setAttribute('data-id', i);\r   container.append(link);\r }\r container.addEventListener('click', (event) => {\r   if (event.target.tagName === 'A') {\r     event.preventDefault();\r     window.alert(event.target.dataset.id);\r   }\r });\r document.body.append(container);\r ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
