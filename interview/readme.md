@@ -1,7 +1,7 @@
-## 前言
+### 前言
 最近在准备前端面试，看了些常考面试题，总结之。
 
-## 手写 浅拷贝(shallowClone) 与 深拷贝(deepClone)
+### 手写 浅拷贝(shallowClone) 与 深拷贝(deepClone)
 
 考查点：`值类型与引用类型`，延伸点：`内存机制`
 
@@ -71,7 +71,7 @@ function deepClone (source, map = new WeakMap()) {
 }
 ```
 
-## 创建 10 个 &lt;a&gt; 标签，点击的时候弹出对应的序号
+### 创建 10 个 &lt;a&gt; 标签，点击的时候弹出对应的序号
 
 考查点：`事件冒泡`
 
@@ -93,7 +93,7 @@ container.addEventListener('click', (event) => {
 document.body.append(container);
 ```
 
-## 手写 防抖(debounce) 与 节流(throttle)
+### 手写 防抖(debounce) 与 节流(throttle)
 
 考查点：`闭包`，延伸点：`性能优化` `交互体验`
 
@@ -127,7 +127,7 @@ function throttle(fn, threshold = 250, {scope = undefined} = {}) {
 }
 ```
 
-## 思考 原型与原型链
+### 思考 原型与原型链
 
 参考
 
@@ -147,7 +147,7 @@ Function.__proto__ === Function.prototype;
 ![原型与原型链](./prototype.jpg "原型与原型链")
 
 
-## 理解 作用域链与闭包
+### 理解 作用域链与闭包
 
 参考
 - [[ mqyqingfeng ] JavaScript深入之作用域链](https://github.com/mqyqingfeng/Blog/issues/6)
@@ -182,7 +182,7 @@ outer: 10
 */
 ```
 
-## 理解 this 与箭头函数
+### 理解 this 与箭头函数
 
 参考
 
@@ -212,7 +212,7 @@ var obj1 = {
 obj1.getName()(); // local local (非严格模式下)
 ```
 
-## 手写 apply call
+### 手写 apply call
 
 ```
 if (!Function.prototype.apply) {
@@ -236,7 +236,7 @@ if (!Function.prototype.apply) {
 }
 ```
 
-## 手写 bind
+### 手写 bind
 
 考查点：`this` `arguments` `闭包`，延伸点：`作用域链`
 
@@ -267,5 +267,5 @@ if (!Function.prototype.bind) {
 }
 ```
 
-## 了解 Promise
+### 了解 Promise
 
