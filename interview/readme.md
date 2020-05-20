@@ -1,15 +1,15 @@
-### 前言
+## 前言
 最近在准备前端面试，看了些常考面试题，总结之。
 
-### 手写 浅拷贝(shallowClone) 与 深拷贝(deepClone)
+## 手写 浅拷贝(shallowClone) 与 深拷贝(deepClone)
 
 考查点：`值类型与引用类型`，延伸点：`内存机制`
 
 参考：
 
-- [ConardLi 如何写出一个惊艳面试官的深拷贝? https://juejin.im/post/5d6aa4f96fb9a06b112ad5b1](https://juejin.im/post/5d6aa4f96fb9a06b112ad5b1)
-- [鬼鬼鬼 JavaScript 内存机制（前端同学进阶必备） https://juejin.im/post/5b10ba336fb9a01e66164346](https://juejin.im/post/5b10ba336fb9a01e66164346)
-- [Nicholas C.Zakas Sets and Maps https://leanpub.com/understandinges6/read#leanpub-auto-sets-and-maps](https://leanpub.com/understandinges6/read#leanpub-auto-sets-and-maps)
+- [[ ConardLi ] 如何写出一个惊艳面试官的深拷贝?](https://juejin.im/post/5d6aa4f96fb9a06b112ad5b1)
+- [[ 鬼鬼鬼 ] JavaScript 内存机制（前端同学进阶必备）](https://juejin.im/post/5b10ba336fb9a01e66164346)
+- [[ Nicholas C.Zakas ] Sets and Maps](https://leanpub.com/understandinges6/read#leanpub-auto-sets-and-maps)
 
 ```
 function isObject (obj) {
@@ -71,7 +71,7 @@ function deepClone (source, map = new WeakMap()) {
 }
 ```
 
-### 创建 10 个 &lt;a&gt; 标签，点击的时候弹出对应的序号
+## 创建 10 个 &lt;a&gt; 标签，点击的时候弹出对应的序号
 
 考查点：`事件冒泡`
 
@@ -93,7 +93,7 @@ container.addEventListener('click', (event) => {
 document.body.append(container);
 ```
 
-### 手写 防抖(debounce) 与 节流(throttle)
+## 手写 防抖(debounce) 与 节流(throttle)
 
 考查点：`闭包`，延伸点：`性能优化` `交互体验`
 
@@ -127,11 +127,11 @@ function throttle(fn, threshold = 250, {scope = undefined} = {}) {
 }
 ```
 
-### 思考 原型与原型链
+## 思考 原型与原型链
 
 参考
 
-- [manxisuo JavaScript 世界万物诞生记 https://zhuanlan.zhihu.com/p/22989691](https://zhuanlan.zhihu.com/p/22989691)
+- [[ manxisuo ] JavaScript 世界万物诞生记](https://zhuanlan.zhihu.com/p/22989691)
 
 
 ```
@@ -147,12 +147,12 @@ Function.__proto__ === Function.prototype;
 ![原型与原型链](./prototype.jpg "原型与原型链")
 
 
-### 理解 作用域链与闭包
+## 理解 作用域链与闭包
 
 参考
-- [mqyqingfeng JavaScript深入之作用域链 https://github.com/mqyqingfeng/Blog/issues/6](https://github.com/mqyqingfeng/Blog/issues/6)
-- Kyle Simpson 你不知道的JavaScript（上卷） 第一部分 第1~4章
-- Nicholas C.Zakas JS高程（第3版） 4.2 执行环境及作用域 7.2 闭包
+- [[ mqyqingfeng ] JavaScript深入之作用域链](https://github.com/mqyqingfeng/Blog/issues/6)
+- [ Kyle Simpson ] 你不知道的JavaScript（上卷） 第一部分 第1~4章
+- [ Nicholas C.Zakas ] JS高程（第3版） 4.2 执行环境及作用域 7.2 闭包
 
 ```
 const a = 10;
@@ -182,12 +182,12 @@ outer: 10
 */
 ```
 
-### 理解 this 与箭头函数
+## 理解 this 与箭头函数
 
 参考
 
-- [Nicholas C.Zakas Arrow Functions https://leanpub.com/understandinges6/read#leanpub-auto-arrow-functions](https://leanpub.com/understandinges6/read#leanpub-auto-arrow-functions)
-- Nicholas C.Zakas JS高程（第3版） 7.2.2 关于 this 对象
+- [[ Nicholas C.Zakas ] Arrow Functions](https://leanpub.com/understandinges6/read#leanpub-auto-arrow-functions)
+- [ Nicholas C.Zakas ] JS高程（第3版） 7.2.2 关于 this 对象
 
 ```
 /* 
@@ -212,7 +212,7 @@ var obj1 = {
 obj1.getName()(); // local local (非严格模式下)
 ```
 
-### 手写 apply call
+## 手写 apply call
 
 ```
 if (!Function.prototype.apply) {
@@ -236,13 +236,13 @@ if (!Function.prototype.apply) {
 }
 ```
 
-### 手写 bind
+## 手写 bind
 
 考查点：`this` `arguments` `闭包`，延伸点：`作用域链`
 
 参考
 
-- [MDN Function.prototype.bind() https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+- [[ MDN ] Function.prototype.bind()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 ```
 if (!Function.prototype.bind) {
@@ -267,5 +267,5 @@ if (!Function.prototype.bind) {
 }
 ```
 
-### 了解 Promise
+## 了解 Promise
 
