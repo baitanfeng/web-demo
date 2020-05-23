@@ -272,7 +272,6 @@ if (!Function.prototype.bind) {
 
 参考
 
-- [Promise](./promise.js)
 - [[ Nicholas C.Zakas ] Promises and Asynchronous Programming](https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming)
 
 ```
