@@ -1,4 +1,5 @@
 ### 前言
+
 最近在准备前端面试，看了些常考面试题，总结之。
 
 ### 手写 浅拷贝(shallowClone) 与 深拷贝(deepClone)
@@ -269,3 +270,50 @@ if (!Function.prototype.bind) {
 
 ### 了解 Promise
 
+参考
+
+- [Promise](./promise.js)
+- [[ Nicholas C.Zakas ] Promises and Asynchronous Programming](https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming)
+
+```
+function isIterable(v) {
+  return v != null && typeof v[Symbol.iterator] === 'function';
+}
+
+Promise.race = function (values) {
+  if (!isIterable(values)) {
+    throw new TypeError(`${values} is not iterable`);
+  }
+
+  const Ctor = this;
+
+  return new Ctor((resolve, reject) => {
+    for (const value of values) {
+      Ctor.resolve(value).then(resolve, reject);
+    }
+  });
+}
+
+Promise.all = function (values) {
+  if (!isIterable(values)) {
+    throw new TypeError(`${values} is not iterable`);
+  }
+
+  const Ctor = this,
+    result = [];
+  let remaining = [...values].length;
+
+  return new Ctor((resolve, reject) => {
+    for (const value of values) {
+      Ctor.resolve(value).then(v => {
+        remaining--;
+        result.push(v);
+
+        if (remaining === 0) {
+          resolve(result);
+        }
+      }, reject)
+    }
+  })
+}
+```
