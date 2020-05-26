@@ -18,57 +18,53 @@ function isObject (obj) {
 }
 
 function shallowClone (source) {
-  if (isObject(source)) {
-    const target = Array.isArray(source) ? [] : {};
+  if (!isObject(source)) return source;
 
-    // for/while 的效率比 for...in 高
-    if (Array.isArray(source)) {
-      const len = source.length;
-      for (let i = 0; i < len; i++) {
-        target[i] = source[i];
-      }
-    } else {
-      for (const key in source) {
-        if (source.hasOwnProperty(key)) {
-          target[key] = source[key];
-        }
+  const target = Array.isArray(source) ? [] : {};
+
+  // for/while 的效率比 for...in 高
+  if (Array.isArray(source)) {
+    const len = source.length;
+    for (let i = 0; i < len; i++) {
+      target[i] = source[i];
+    }
+  } else {
+    for (const key in source) {
+      if (source.hasOwnProperty(key)) {
+        target[key] = source[key];
       }
     }
-
-    return target;
-  } else {
-    return source;
   }
+
+  return target;
 }
 
 function deepClone (source, map = new WeakMap()) {
-  if (isObject(source)) {
-    const target = Array.isArray(source) ? [] : {};
+  if (!isObject(source)) return source;
 
-    // 解决递归可能会引起的循环引用问题
-    if (map.has(source)) {
-      return map.get(source);
-    }
-    map.set(source, target);
+  const target = Array.isArray(source) ? [] : {};
 
-    // for/while 的效率比 for...in 高
-    if (Array.isArray(source)) {
-      const len = source.length;
-      for (let i = 0; i < len; i++) {
-        target[i] = deepClone(source[i], map);
-      }
-    } else {
-      for (const key in source) {
-        if (source.hasOwnProperty(key)) {
-          target[key] = deepClone(source[key], map);
-        }
-      }
-    }
-
-    return target;
-  } else {
-    return source;
+  // 解决递归可能会引起的循环引用问题
+  if (map.has(source)) {
+    return map.get(source);
   }
+  map.set(source, target);
+
+  // for/while 的效率比 for...in 高
+  if (Array.isArray(source)) {
+    const len = source.length;
+    for (let i = 0; i < len; i++) {
+      target[i] = deepClone(source[i], map);
+    }
+  } else {
+    for (const key in source) {
+      if (source.hasOwnProperty(key)) {
+        target[key] = deepClone(source[key], map);
+      }
+    }
+  }
+
+  return target;
 }
 ```
 
