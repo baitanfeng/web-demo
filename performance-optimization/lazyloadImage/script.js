@@ -7,10 +7,10 @@ if (document.readyState === 'loading') {
 function handler() {
   const lazyImages = document.querySelectorAll('img.lazy');
 
-  let lazyImageObserver = new IntersectionObserver((entries, observer) => {
+  const lazyImageObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        let lazyImage = entry.target;
+        const lazyImage = entry.target;
         lazyImage.src = lazyImage.dataset.src;
         lazyImage.classList.remove('lazy');
         lazyImageObserver.unobserve(lazyImage);
