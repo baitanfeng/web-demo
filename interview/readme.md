@@ -316,3 +316,48 @@ Promise.all = function (values) {
   })
 }
 ```
+
+### 理解 JS运行机制
+
+考查点：`事情循环` `宏任务与微任务`
+
+参考
+
+- [[ 快狗打车前端团队 ] 人人都看得懂的JS运行机制](https://juejin.im/post/5d4b8acdf265da03bc126451)
+
+```
+console.log('script start');
+
+setTimeout(() => {
+  console.log('setTimeout 1');
+  Promise.resolve()
+    .then(() => console.log('promise 3'))
+    .then(() => console.log('promise 4'))
+    .then(() => {
+      setTimeout(() => {
+        console.log('setTimeout 2');
+        Promise.resolve()
+          .then(() => console.log('promise 5'))
+          .then(() => console.log('promise 6'))
+      }, 0);
+    });
+}, 0);
+
+Promise.resolve()
+  .then(() => console.log('promise 1'))
+  .then(() => console.log('promise 2'));
+
+/*
+output:
+
+script start
+promise 1
+promise 2
+setTimeout 1
+promise 3
+promise 4
+setTimeout 2
+promise 5
+promise 6
+*/
+```

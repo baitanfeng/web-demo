@@ -1,29 +1,20 @@
-const p1 = Promise.resolve(42);
-const p2 = Promise.reject(43);
+console.log('script start');
 
-const p3 = Promise.resolve(p1);
-const p4 = Promise.resolve(p2);
+setTimeout(() => {
+  console.log('setTimeout 1');
+  Promise.resolve()
+    .then(() => console.log('promise 3'))
+    .then(() => console.log('promise 4'))
+    .then(() => {
+      setTimeout(() => {
+        console.log('setTimeout 2');
+        Promise.resolve()
+          .then(() => console.log('promise 5'))
+          .then(() => console.log('promise 6'))
+      }, 0);
+    });
+}, 0);
 
-const p5 = Promise.reject(p1);
-const p6 = Promise.reject(p2);
-
-p3.then(function(value) {
-  console.log(`p3 fulfilled ${value}`);
-}, function(value) {
-  console.log(`p3 rejected ${value}`);
-})
-p4.then(function(value) {
-  console.log(`p4 fulfilled ${value}`);
-}, function(value) {
-  console.log(`p4 rejected ${value}`);
-})
-p5.then(function(value) {
-  console.log(`p5 fulfilled ${value}`);
-}, function(value) {
-  console.log(`p5 rejected ${value}`);
-})
-p6.then(function(value) {
-  console.log(`p6 fulfilled ${value}`);
-}, function(value) {
-  console.log(`p6 rejected ${value}`);
-})
+Promise.resolve()
+  .then(() => console.log('promise 1'))
+  .then(() => console.log('promise 2'));
