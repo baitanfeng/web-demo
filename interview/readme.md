@@ -1,10 +1,4 @@
-### 前言
-
-最近在准备前端面试，看了些常考面试题，总结之。
-
-### 手写 浅拷贝(shallowClone) 与 深拷贝(deepClone)
-
-考查点：`值类型与引用类型`，延伸点：`内存机制`
+## 手写 浅拷贝(shallowClone) 与 深拷贝(deepClone)
 
 参考：
 
@@ -13,86 +7,62 @@
 - [[ Nicholas C.Zakas ] Sets and Maps](https://leanpub.com/understandinges6/read#leanpub-auto-sets-and-maps)
 
 ```
-function isObject (obj) {
-  return obj !== null && typeof obj === "object";
+function isObject (value) {
+  return value !== null && typeof value === "object";
 }
 
-function shallowClone (source) {
-  if (!isObject(source)) return source;
+function shallowClone (value) {
+  if (!isObject(value)) { return value; }
 
-  const target = Array.isArray(source) ? [] : {};
+  const isArrayValue = Array.isArray(value);
+  const result = isArrayValue ? [] : {};
 
-  // for/while 的效率比 for...in 高
-  if (Array.isArray(source)) {
-    const len = source.length;
-    for (let i = 0; i < len; i++) {
-      target[i] = source[i];
+  if (isArrayValue) {
+    // for 的效率比 for...in 高
+    for (let i = 0, len = value.length; i < len; i++) {
+      result[i] = value[i];
     }
   } else {
-    for (const key in source) {
-      if (source.hasOwnProperty(key)) {
-        target[key] = source[key];
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        result[key] = value[key];
       }
     }
   }
 
-  return target;
+  return result;
 }
 
-function deepClone (source, map = new WeakMap()) {
-  if (!isObject(source)) return source;
+function deepClone (value, map = new WeakMap()) {
+  if (!isObject(value)) { return value; }
 
-  const target = Array.isArray(source) ? [] : {};
+  const isArrayValue = Array.isArray(value);
+  const result = isArrayValue ? [] : {};
 
-  // 解决递归可能会引起的循环引用问题
-  if (map.has(source)) {
-    return map.get(source);
+  // 解决递归循环引用问题
+  if (map.has(value)) {
+    return map.get(value);
   }
-  map.set(source, target);
-
-  // for/while 的效率比 for...in 高
-  if (Array.isArray(source)) {
-    const len = source.length;
-    for (let i = 0; i < len; i++) {
-      target[i] = deepClone(source[i], map);
+  map.set(value, result);
+  
+  if (isArrayValue) {
+    // for 的效率比 for...in 高
+    for (let i = 0, len = value.length; i < len; i++) {
+      result[i] = deepClone(value[i], map);
     }
   } else {
-    for (const key in source) {
-      if (source.hasOwnProperty(key)) {
-        target[key] = deepClone(source[key], map);
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        result[key] = deepClone(value[key], map);
       }
     }
   }
 
-  return target;
+  return result;
 }
 ```
 
-### 创建 10 个 &lt;a&gt; 标签，点击的时候弹出对应的序号
-
-考查点：`事件冒泡`
-
-```
-const container = document.createElement('div');
-for (let i = 0; i < 10; i++) {
-  const link = document.createElement('a');
-  link.href = '#';
-  link.textContent = i.toString();
-  link.setAttribute('data-id', i);
-  container.append(link);
-}
-container.addEventListener('click', (event) => {
-  if (event.target.tagName === 'A') {
-    event.preventDefault();
-    alert(event.target.dataset.id);
-  }
-});
-document.body.append(container);
-```
-
-### 手写 防抖(debounce) 与 节流(throttle)
-
-考查点：`闭包`，延伸点：`性能优化` `交互体验`
+## 手写 防抖(debounce) 与 节流(throttle)
 
 ```
 function debounce(fn, threshold = 250, {scope = undefined} = {}) {
@@ -124,7 +94,7 @@ function throttle(fn, threshold = 250, {scope = undefined} = {}) {
 }
 ```
 
-### 思考 原型与原型链
+## 思考 原型与原型链
 
 参考
 
@@ -144,12 +114,12 @@ Function.__proto__ === Function.prototype;
 ![原型与原型链](./prototype.jpg "原型与原型链")
 
 
-### 理解 作用域链与闭包
+## 理解 作用域链与闭包
 
 参考
 - [[ mqyqingfeng ] JavaScript深入之作用域链](https://github.com/mqyqingfeng/Blog/issues/6)
 - [ Kyle Simpson ] 你不知道的JavaScript（上卷） 第一部分 第1~4章
-- [ Nicholas C.Zakas ] JS高程（第3版） 4.2 执行环境及作用域 7.2 闭包
+- [ Nicholas C.Zakas ] JavaScript高级程序设计（第3版） 4.2 执行环境及作用域 7.2 闭包
 
 ```
 const a = 10;
@@ -171,20 +141,16 @@ function outer() {
 
 getA();
 
-/*
-output:
-
-inner: 20
-outer: 10
-*/
+// inner: 20
+// outer: 10
 ```
 
-### 理解 this 与箭头函数
+## 理解 this 与箭头函数
 
 参考
 
 - [[ Nicholas C.Zakas ] Arrow Functions](https://leanpub.com/understandinges6/read#leanpub-auto-arrow-functions)
-- [ Nicholas C.Zakas ] JS高程（第3版） 7.2.2 关于 this 对象
+- [ Nicholas C.Zakas ] JavaScript高级程序设计（第3版） 7.2.2 关于 this 对象
 
 ```
 /* 
@@ -209,7 +175,7 @@ var obj1 = {
 obj1.getName()(); // local local (非严格模式下)
 ```
 
-### 手写 apply call
+## 手写 apply/call
 
 ```
 if (!Function.prototype.apply) {
@@ -218,24 +184,31 @@ if (!Function.prototype.apply) {
     writable: true,
     configurable: true,
     value: function () {
-      const thatFn = this;
-      const [that, args = []] = [...arguments];
+      if (typeof this !== 'function') {
+        throw new TypeError(`${this} is not a function`);
+      }
 
-      // ... 省略完整性判断及处理
+      let T = arguments[0];
+      if (T == null) { T = window; }
+      T = Object(T);
 
-      const key = Symbol();
-      that[key] = thatFn;
-      const result = that[key](...args);
-      delete that[key];
+      const len = arguments.length;
+      let args;
+      if (len > 1) {
+        args = arguments[1];
+      }
+
+      const k = Symbol('keyThis');
+      T[k] = this;
+      const result = len > 1 ? T[k](...args) : T[k]();
+      delete T[k];
       return result;
     }
   });
 }
 ```
 
-### 手写 bind
-
-考查点：`this` `arguments` `闭包`，延伸点：`作用域链`
+## 手写 bind
 
 参考
 
@@ -248,23 +221,30 @@ if (!Function.prototype.bind) {
     writable: true,
     configurable: true,
     value: function () {
-      const thatFn = this;
-      const [that, ...args] = [...arguments];
-  
-      if (typeof thatFn !== 'function') {
-        throw new TypeError(`${thatFn} is not a function`);
+      if (typeof this !== 'function') {
+        throw new TypeError(`${this} is not a function`);
       }
-  
+
+      let T = arguments[0];
+      if (T == null) { T = window; }
+      T = Object(T);
+
+      const len = arguments.length;
+      let args = [];
+      if (len > 1) {
+        args = Array.prototype.slice.call(arguments, 1);
+      }
+
+      const _this = this;
       return function () {
-        const fnArgs = [...args, ...arguments];
-        return thatFn.apply(that, fnArgs);
+        return _this.apply(T, [...args, ...arguments]);
       }
     }
   });
 }
 ```
 
-### 了解 Promise
+## 了解 Promise
 
 参考
 
@@ -313,13 +293,12 @@ Promise.all = function (values) {
 }
 ```
 
-### 理解 JS运行机制
-
-考查点：`事情循环` `宏任务与微任务`
+## 理解 JS运行机制
 
 参考
 
 - [[ 快狗打车前端团队 ] 人人都看得懂的JS运行机制](https://juejin.im/post/5d4b8acdf265da03bc126451)
+- [[ Alexander Zlatkov ] How JavaScript works: Event loop and the rise of Async programming](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
 
 ```
 console.log('script start');
@@ -333,7 +312,7 @@ console.log('script end');
 // setTimeout
 ```
 
-### 了解 性能优化
+## 了解 性能优化
 
 参考
 
@@ -365,5 +344,36 @@ function handler() {
   lazyImages.forEach(lazyImage => {
     lazyImageObserver.observe(lazyImage);
   });
+}
+```
+
+## 了解 new Foo(...) 的过程
+
+JavaScript高级程序设计（第三版）里是这样描述的：
+
+1. 创建一个新对象
+2. 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
+3. 执行构造函数中的代码（为这个新对象添加属性）
+4. 返回新对象
+
+MDN中是这样描述的：
+
+1. A new object is created, inheriting from Foo.prototype
+2. The constructor function Foo is called with the specified arguments, and with this bound to the newly created object. new Foo is equivalent to new Foo(), i.e. if no argument list is specified, Foo is called without arguments
+3. The Object (not primitive type) returned by the constructor function become the result of the whole new expression. If the constructor function doesn't explicitly return an object, the object created in step 1 is used instead.
+
+实现过程，new Foo(name, age) 类似于 selfDefineNew(Foo, name, age)，看看如下的自定义new来帮助理解其过程
+
+```
+function selfDefineNew () {
+  const Ctor = Array.prototype.shift.call(arguments);
+  
+  if (typeof Ctor !== 'function') {
+    throw new TypeError(`${Ctor} is not a constructor`);
+  }
+
+  const obj = Object.create(Ctor.prototype);
+  const result = Ctor.apply(obj, arguments);
+  return result instanceof Object ? result : obj;
 }
 ```

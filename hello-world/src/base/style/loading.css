@@ -1,0 +1,81 @@
+.mf-loading-fade-enter-active,
+.mf-loading-fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.mf-loading-fade-enter,
+.mf-loading-fade-leave-to {
+  opacity: 0;
+}
+
+.mf-loading-parent--relative {
+  position: relative;
+}
+.mf-loading-parent--overflow-hidden {
+  overflow: hidden;
+}
+
+.mf-loading-mask {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  z-index: 2000;
+}
+.mf-loading-mask.is-fullscreen {
+  position: fixed;
+}
+
+.mf-loading-spinner {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.mf-loading-text {
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  color: blue;
+}
+
+.mf-loading-circular {
+  width: 42px;
+  height: 42px;
+  animation: mf-loading-rotate 2s linear infinite;
+}
+
+.mf-loading-path {
+  stroke: blue;
+  stroke-dasharray: 90 200;
+  stroke-dashoffset: 0;
+  animation: mf-loading-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes mf-loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mf-loading-dash {
+  0% {
+    stroke-dasharray: 0 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90 200;
+    stroke-dashoffset: -36;
+  }
+
+  100% {
+    stroke-dasharray: 90 200;
+    stroke-dashoffset: -126;
+  }
+}
