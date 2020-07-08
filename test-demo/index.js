@@ -1,5 +1,26 @@
-const div = document.createElement('div');
-div.classList.add('aaa');
-div.classList.add('aaa');
-div.classList.add('bbb');
-document.body.append(div);
+class MyQueue {
+  constructor() {
+    this.stack1 = [];
+    this.stack2 = [];
+  }
+  push(x) {
+    this.stack1.push(x);
+  }
+  pop() {
+    if (this.stack2.length) { return this.stack2.pop(); }
+    while(this.stack1.length) {
+      this.stack2.push(this.stack1.pop());
+    }
+    return this.stack2.pop();
+  }
+  peek() {
+    if (this.stack2.length) { return this.stack2[this.stack2.length - 1]; }
+    while(this.stack1.length) {
+      this.stack2.push(this.stack1.pop());
+    }
+    return this.stack2[this.stack2.length - 1];
+  }
+  empty() {
+    return this.stack1.length === 0 && this.stack2.length === 0;
+  }
+}

@@ -5,67 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-
-  <style>
-    .circular {
-      animation: loading-rotate 2s linear infinite;
-    }
-
-    .path {
-      stroke: red;
-      stroke-dasharray: 90;
-      animation: loading-dash 1.5s ease-in-out infinite;
-    }
-
-    @keyframes loading-rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes loading-dash {
-      0% {
-        stroke-dasharray: 0 200;
-        stroke-dashoffset: 0;
-      }
-
-      50% {
-        stroke-dasharray: 90 200;
-        stroke-dashoffset: -36;
-      }
-
-      100% {
-        stroke-dasharray: 90 200;
-        stroke-dashoffset: -126;
-      }
-    }
-  </style>
 </head>
 
 <body>
-  <svg viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
-    <!-- No dashes nor gaps -->
-    <line x1="0" y1="1" x2="30" y2="1" stroke="black" />
-
-    <!-- Dashes and gaps of the same size -->
-    <line x1="0" y1="3" x2="30" y2="3" stroke="black" stroke-dasharray="4" />
-
-    <!-- Dashes and gaps of different sizes -->
-    <line x1="0" y1="5" x2="30" y2="5" stroke="black" stroke-dasharray="4 1" />
-
-    <!-- Dashes and gaps of various sizes with an odd number of values -->
-    <line x1="0" y1="7" x2="30" y2="7" stroke="black" stroke-dasharray="4 1 2" />
-
-    <!-- Dashes and gaps of various sizes with an even number of values -->
-    <line x1="0" y1="9" x2="30" y2="9" stroke="black" stroke-dasharray="4 1 2 3" />
-  </svg>
-
-  <svg>
-    <circle cx="50" cy="50" r="25" fill="none" class="path"></circle>
-  </svg>
-  <svg width="300" heigth="300" viewBox="25 25 50 50" class="circular">
-    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-  </svg>
   <script src="./index.js"></script>
 </body>
 
