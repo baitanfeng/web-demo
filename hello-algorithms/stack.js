@@ -1,18 +1,3 @@
-function minAddToMakeValid (S) {
-  const stack = new Stack();
-  for (const char of S) {
-    switch(char) {
-      case '(': stack.push(char); break;
-      case ')':
-        stack.peek() === '('
-          ? stack.pop()
-          : stack.push(char);
-        break;
-    }
-  }
-  return stack.size();
-}
-
 class Stack {
   constructor() {
     this.stack = [];
