@@ -7,7 +7,7 @@ class Stack {
   }
   pop() {
     if (!this.isEmpty()) {
-      this.stack.pop();
+      return this.stack.pop();
     }
   }
   peek() {

@@ -1,39 +1,32 @@
-function minAddToMakeValid (S) {
-  const stack = new Stack();
-  for (const char of S) {
-    switch(char) {
-      case '(': stack.push(char); break;
-      case ')':
-        stack.peek() === '('
-          ? stack.pop()
-          : stack.push(char);
-        break;
-    }
-  }
-  return stack.size();
+function generateParenthesis(n) {
+  const current = new Array(2 * n);
+  const ans = [];
+
+  generateAll(current, 0, ans);
+
+  return ans;
 }
 
-class Stack {
-  constructor() {
-    this.stack = [];
-  }
-  push(x) {
-    this.stack.push(x);
-  }
-  pop() {
-    if (!this.isEmpty()) {
-      this.stack.pop();
-    }
-  }
-  peek() {
-    if (!this.isEmpty()) {
-      return this.stack[this.size() - 1];
-    }
-  }
-  size() {
-    return this.stack.length;
-  }
-  isEmpty() {
-    return this.size() === 0;
+function generateAll(current, pos, ans) {
+  if (pos === current.length) {
+    if (validate(current)) ans.push(current.join(''));
+  } else {
+    current[pos] = '(';
+    generateAll(current, pos + 1, ans);
+    current[pos] = ')';
+    generateAll(current, pos + 1, ans);
   }
 }
+
+function validate(current) {
+  let balance = 0;
+
+  for (let i = 0; i < current.length; i++) {
+    current[i] === '(' ? balance++ : balance--;
+    if (balance < 0) return false;
+  }
+
+  return balance === 0;
+}
+
+console.log(generateParenthesis(3));

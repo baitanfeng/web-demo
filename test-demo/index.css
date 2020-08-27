@@ -1,0 +1,9 @@
+body {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.wrap {
+  height: 200vh;
+  background-color: orangered;
+}
