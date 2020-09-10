@@ -6,11 +6,7 @@
 
 <script>
 /* eslint-disable */
-// const echarts = require('echarts');
-import * as echarts from 'echarts/lib/echarts';
-import 'echarts/lib/chart/line';
-import 'echarts/lib/component/tooltip';
-import 'echarts/lib/component/legend';
+const echarts = require('echarts');
 
 const data1 = [],
   data2 = [],
@@ -18,7 +14,7 @@ const data1 = [],
   data4 = [],
   data5 = [];
 const date = [];
-let base = +new Date(2020, 2, 5);
+let base = Date.now();
 const oneDay = 24 * 3600 * 1000;
 
 for (let i = 0; i < 365; i++) {
@@ -41,11 +37,9 @@ for (let i = 0; i < 365; i++) {
     date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'));
   }
 
-  data1.push(Math.round(Math.random() * 30) + 60);
-  data2.push(Math.round(Math.random() * 30) + 80);
-  data3.push(Math.round(Math.random() * 30) + 100);
-  data4.push(Math.round(Math.random() * 30) + 120);
-  data5.push(Math.round(Math.random() * 30) + 140);
+  data1.push(Math.round(Math.random() * 30) + 80);
+  data2.push(Math.round(Math.random() * 5) + 40);
+  data3.push(Math.round(Math.random() * 5) + 60);
 };
 
 export default {
@@ -77,22 +71,53 @@ export default {
         // }
         formatter: `
           {b} <br/>
-          <span style="display: inline-block; width: 10px; height: 10px; background-color: #eee;"></span> {a4} <span style="color: grey; font-size: 10px;">{c4}亿元</span> <br/>
-          <span style="display: inline-block; width: 10px; height: 10px; background-color: #ccc;"></span> {a3} <span style="color: grey; font-size: 10px;">{c3}亿元</span> <br/>
-          <span style="display: inline-block; width: 10px; height: 10px; background-color: #aaa;"></span> {a2} <span style="color: grey; font-size: 10px;">{c2}亿元</span> <br/>
-          <span style="display: inline-block; width: 10px; height: 10px; background-color: #777;"></span> {a1} <span style="color: grey; font-size: 10px;">{c1}亿元</span> <br/>
-          <span style="display: inline-block; width: 10px; height: 10px; background-color: #333;"></span> {a0} <span style="color: grey; font-size: 10px;">{c0}亿元</span> <br/>
+
+          <div style="display: flex; margin-bottom: 10px;">
+            <span style="display: inline-block; width: 10px; height: 10px; background-color: #eee;"></span>
+            <div style="display: flex; flex-direction: column; font-size: 12px; line-height: 12px; padding-left: 5px;">
+              <span>{a2}</span>
+              <span style="color: grey; font-size: 10px;">{c2}%</span>
+            </div>
+          </div>
+
+          <div style="display: flex; margin-bottom: 10px;">
+            <span style="display: inline-block; width: 10px; height: 10px; background-color: #ccc;"></span>
+            <div style="display: flex; flex-direction: column; font-size: 12px; line-height: 12px; padding-left: 5px;">
+              <span>{a1}</span>
+              <span style="color: grey; font-size: 10px;">{c1}%</span>
+            </div>
+          </div>
+
+          <div style="display: flex;">
+            <span style="display: inline-block; width: 10px; height: 10px; background-color: #aaa;"></span>
+            <div style="display: flex; flex-direction: column; font-size: 12px; line-height: 12px; padding-left: 5px;">
+              <span>{a0}</span>
+              <span style="color: grey; font-size: 10px;">{c0}亿元</span>
+            </div>
+          </div>
         `
       },
       legend: {
-        data: ['<=1M', '1-3M', '3-6M', '6M-1Y', '>=1Y'],
+        // data: ['活期存款总规模', '活期存款加权利率', '活期FTP'],
+        data: [{
+          name: '活期存款总规模',
+          icon: 'path://M0 0 L10 0 L10 10 L0 10 Z'
+        }, {
+          name: '活期存款加权利率',
+          icon: 'path://M0 0 L30 0 L30 5 L0 5 Z'
+        }, {
+          name: '活期FTP',
+          icon: 'path://M0 0 L30 0 L30 5 L0 5 Z'
+        }],
 
         left: '10',
         right: '10',
         top: 'bottom',
+        align: 'left',
 
         padding: 0,
-        itemWidth: 10,
+        itemGap: 5,
+        itemWidth: 30,
         itemHeight: 10,
         selectedMode: false,
         icon: 'rect',
@@ -153,7 +178,7 @@ export default {
       }],
       series: [{
           type: 'line',
-          name: '<=1M',
+          name: '活期存款总规模',
           symbol: 'none',
           stack: '总量',
           itemStyle: {
@@ -179,36 +204,18 @@ export default {
         },
         {
           type: 'line',
-          name: '1-3M',
+          name: '活期存款加权利率',
           symbol: 'none',
           stack: '总量',
-          areaStyle: {},
           data: data2
         },
         {
           type: 'line',
-          name: '3-6M',
+          name: '活期FTP',
           symbol: 'none',
           stack: '总量',
-          areaStyle: {},
           data: data3
         },
-        {
-          type: 'line',
-          name: '6M-1Y',
-          symbol: 'none',
-          stack: '总量',
-          areaStyle: {},
-          data: data4
-        },
-        {
-          type: 'line',
-          name: '>=1Y',
-          symbol: 'none',
-          stack: '总量',
-          areaStyle: {},
-          data: data5
-        }
       ]
     };
 

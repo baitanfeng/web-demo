@@ -1,19 +1,11 @@
-function maximalRectangle(matrix) {
-  if (matrix.length === 0) return 0;
+const strategies = {
+  [TYPE.JUICE]: '果汁',
+  [TYPE.SALAD]: '拉沙',
+  [TYPE.JAM]: '果酱'
+};
 
-  const h = matrix.length;
-  const w = matrix[0].length;
+strategies['apple'] = '苹果';
 
-  const height = new Array(w).fill(0);
-  const left = new Array(w).fill(0);
-  const right = new Array(w).fill(0);
-
-  
+function enjoy(type = TYPE.JUICE) {
+  return strategies[type] || '';
 }
-
-console.log(maximalRectangle([
-  ["1","0","1","0","0"],
-  ["1","0","1","1","1"],
-  ["1","1","1","1","1"],
-  ["1","0","0","1","0"]
-]))

@@ -40,3 +40,12 @@ export function hasRegExpU() {
     return false;
   }
 }
+
+export function toUint32(value) {
+  return Math.floor(Math.abs(Number(value))) % Math.pow(2, 32);
+}
+
+export function isArrayIndex(key) {
+  const numericKey = toUint32(key);
+  return String(numericKey) === key && numericKey < (Math.pow(2, 32) - 1);
+}

@@ -1,32 +1,36 @@
-function generateParenthesis(n) {
-  const current = new Array(2 * n);
-  const ans = [];
-
-  generateAll(current, 0, ans);
-
-  return ans;
-}
-
-function generateAll(current, pos, ans) {
-  if (pos === current.length) {
-    if (validate(current)) ans.push(current.join(''));
-  } else {
-    current[pos] = '(';
-    generateAll(current, pos + 1, ans);
-    current[pos] = ')';
-    generateAll(current, pos + 1, ans);
+function validate() {
+  if (user.name === '') {
+    console.log('用户名不能为空');
+    return false;
   }
-}
-
-function validate(current) {
-  let balance = 0;
-
-  for (let i = 0; i < current.length; i++) {
-    current[i] === '(' ? balance++ : balance--;
-    if (balance < 0) return false;
+  if (user.password === '') {
+    console.log('密码不能为空');
+    return false;
   }
 
-  return balance === 0;
+  return true;
 }
 
-console.log(generateParenthesis(3));
+function formSubmit() {
+  const params = {
+    username: user.name,
+    password: user.password
+  };
+  ajax(url, params);
+}
+
+function formSubmitProxy() {
+  const proxy = new Proxy(formSubmit, {
+    apply(trapTarget, thisArg, argumentList) {
+      if (!validate()) return;
+      return Reflect.apply(trapTarget, thisArg, argumentList);
+    }
+  });
+
+  proxy();
+
+  // if (!validate()) return;
+  // formSubmit();
+}
+
+formSubmitProxy();
