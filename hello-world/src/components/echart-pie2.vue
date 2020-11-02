@@ -8,6 +8,13 @@
 /* eslint-disable */
 const echarts = require('echarts');
 
+const map = new Map([
+  ['普通活期存款', 335],
+  ['三方存管业务沉淀活期', 310],
+  ['托管业务沉淀活期', 234],
+  ['约期存款', 135],
+]);
+
 export default {
   name: 'About',
   mounted() {
@@ -24,11 +31,23 @@ export default {
         orient: 'vertical',
         top: 'middle',
         right: 40,
-        itemWidth: 14,
-        itemHeight: 14,
+        itemWidth: 10,
+        itemHeight: 10,
         itemGap: 25,
         data: ['普通活期存款', '三方存管业务沉淀活期', '托管业务沉淀活期', '约期存款'],
-        selectedMode: false
+        selectedMode: false,
+        formatter: function (value) {
+          return `${value}\n{grey|${map.get(value)}亿元}`;
+        },
+        textStyle: {
+          rich: {
+            grey: {
+              color: '#ccc',
+              lineHeight: 20
+            }
+          }
+        },
+        icon: 'circle',
       },
       series: [{
         type: 'pie',
@@ -54,7 +73,7 @@ export default {
               itemStyle: {
                 color: '#666'
               }
-            }
+            },
           },
           {
             name: '三方存管业务沉淀活期',

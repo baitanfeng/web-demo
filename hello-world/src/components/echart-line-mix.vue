@@ -37,9 +37,9 @@ for (let i = 0; i < 365; i++) {
     date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'));
   }
 
-  data1.push(Math.round(Math.random() * 30) + 80);
-  data2.push(Math.round(Math.random() * 5) + 40);
-  data3.push(Math.round(Math.random() * 5) + 60);
+  data1.push(Math.round(Math.random() * 30) + 100);
+  data2.push(Math.round(Math.random() * 15) + 10);
+  data3.push(Math.round(Math.random() * 15) + 40);
 };
 
 export default {
@@ -52,7 +52,8 @@ export default {
         trigger: 'axis',
         axisPointer: {
           lineStyle: {
-            color: '#ccc'
+            color: '#ccc',
+            type: 'dashed',
           }
         },
         backgroundColor: '#fff',
@@ -72,57 +73,57 @@ export default {
         formatter: `
           {b} <br/>
 
-          <div style="display: flex; margin-bottom: 10px;">
+          <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            <span style="display: inline-block; width: 10px; height: 10px; background-color: #aaa;"></span>
+            <div style="flex: 1; display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding-left: 5px;">
+              <span style="padding-right: 30px;">{a0}</span>
+              <span style="color: grey; font-size: 10px;">{c0}亿元</span>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; margin-bottom: 10px;">
             <span style="display: inline-block; width: 10px; height: 10px; background-color: #eee;"></span>
-            <div style="display: flex; flex-direction: column; font-size: 12px; line-height: 12px; padding-left: 5px;">
-              <span>{a2}</span>
+            <div style="flex: 1; display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding-left: 5px;">
+              <span style="padding-right: 30px;">{a2}</span>
               <span style="color: grey; font-size: 10px;">{c2}%</span>
             </div>
           </div>
 
-          <div style="display: flex; margin-bottom: 10px;">
+          <div style="display: flex; align-items: center;">
             <span style="display: inline-block; width: 10px; height: 10px; background-color: #ccc;"></span>
-            <div style="display: flex; flex-direction: column; font-size: 12px; line-height: 12px; padding-left: 5px;">
-              <span>{a1}</span>
+            <div style="flex: 1; display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding-left: 5px;">
+              <span style="padding-right: 30px;">{a1}</span>
               <span style="color: grey; font-size: 10px;">{c1}%</span>
-            </div>
-          </div>
-
-          <div style="display: flex;">
-            <span style="display: inline-block; width: 10px; height: 10px; background-color: #aaa;"></span>
-            <div style="display: flex; flex-direction: column; font-size: 12px; line-height: 12px; padding-left: 5px;">
-              <span>{a0}</span>
-              <span style="color: grey; font-size: 10px;">{c0}亿元</span>
             </div>
           </div>
         `
       },
       legend: {
-        // data: ['活期存款总规模', '活期存款加权利率', '活期FTP'],
-        data: [{
-          name: '活期存款总规模',
-          icon: 'path://M0 0 L10 0 L10 10 L0 10 Z'
-        }, {
-          name: '活期存款加权利率',
-          icon: 'path://M0 0 L30 0 L30 5 L0 5 Z'
-        }, {
-          name: '活期FTP',
-          icon: 'path://M0 0 L30 0 L30 5 L0 5 Z'
-        }],
+        data: ['活期存款总规模', '活期存款加权利率', '活期FTP'],
+        // data: [{
+        //   name: '活期存款总规模',
+        //   icon: 'path://M0 0 L10 0 L10 10 L0 10 Z'
+        // }, {
+        //   name: '活期存款加权利率',
+        //   icon: 'path://M0 0 L30 0 L30 5 L0 5 Z'
+        // }, {
+        //   name: '活期FTP',
+        //   icon: 'path://M0 0 L30 0 L30 5 L0 5 Z'
+        // }],
 
-        left: '10',
-        right: '10',
+        // left: '10',
+        // right: '10',
         top: 'bottom',
-        align: 'left',
+        // align: 'center',
 
         padding: 0,
-        itemGap: 5,
-        itemWidth: 30,
+        itemGap: 25,
+        itemWidth: 10,
         itemHeight: 10,
         selectedMode: false,
         icon: 'rect',
 
-        formatter: name => `${name}${' '.repeat(4)}`,
+        // formatter: name => `${name}${' '.repeat(4)}`,
       },
       grid: {
         left: '10',
@@ -170,17 +171,34 @@ export default {
         axisLabel: {
           color: 'lightgrey'
         },
-        splitLine: {
-          lineStyle: {
-            type: 'dashed'
-          }
+        // splitLine: {
+        //   lineStyle: {
+        //     type: 'dashed'
+        //   }
+        // },
+        max: 150
+      }, {
+        type: 'value',
+        name: '%',
+        axisLine: {
+          show: false,
         },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          color: 'lightgrey'
+        },
+        splitLine: {
+          show: false,
+        },
+        max: 100,
       }],
       series: [{
           type: 'line',
           name: '活期存款总规模',
-          symbol: 'none',
-          stack: '总量',
+          // symbol: 'none',
+          showSymbol: false,
           itemStyle: {
             color: 'orangered'
           },
@@ -205,16 +223,18 @@ export default {
         {
           type: 'line',
           name: '活期存款加权利率',
-          symbol: 'none',
-          stack: '总量',
-          data: data2
+          // symbol: 'none',
+          showSymbol: false,
+          data: data2,
+          yAxisIndex: 1,
         },
         {
           type: 'line',
           name: '活期FTP',
-          symbol: 'none',
-          stack: '总量',
-          data: data3
+          // symbol: 'none',
+          showSymbol: false,
+          data: data3,
+          yAxisIndex: 1,
         },
       ]
     };
@@ -228,5 +248,6 @@ export default {
 .echarts {
   width: 100vw;
   height: 400px;
+  justify-content: space-between;
 }
 </style>

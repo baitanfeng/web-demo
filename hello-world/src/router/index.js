@@ -7,6 +7,7 @@ const Home = () => import('../App.vue');
 const About = () => import('../components/About.vue');
 const Vant = () => import('../components/vant.vue');
 const Element = () => import('../components/element.vue');
+const Test = () => import('../components/test.vue');
 
 const router = new VueRouter({
   mode: 'history',
@@ -16,6 +17,7 @@ const router = new VueRouter({
     { path: '/about', name: 'about', component: About },
     { path: '/vant', name: 'vant', component: Vant },
     { path: '/element', name: 'element', component: Element },
+    { path: '/test', name: 'test', component: Test },
   ]
 })
 

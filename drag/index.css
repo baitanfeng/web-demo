@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.left {
+  width: 300px;
+  height: 500px;
+  margin-right: 10px;
+  border: 1px solid red;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1px;
+}
+
+.right {
+  width: 300px;
+  height: 500px;
+  border: 1px solid lightseagreen;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1px;
+}
+
+.txt {
+  border: 1px solid gray;
+  margin: 1px;
+  padding: 5px;
+  cursor: move;
+}
