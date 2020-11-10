@@ -33,4 +33,4 @@ function lcs(s1, s2, m, n, memo) {
   return memo[m][n];
 }
 
-console.log(minDistance('sea', 'ate'));
+console.log(minDistance('sea', 'ate')); // 4

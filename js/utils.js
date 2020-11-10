@@ -64,7 +64,7 @@ export const toFixed = (value, len = 0, isRound = true) => {
 
   // 处理无效情况
   if (Number.isNaN(val)) return value;
-  if (!Number.isInteger(len) || len < 0 || len > 100) return value;
+  if (!Number.isInteger(len) || len < 0 || len > 20) return value;
   if (typeof isRound !== 'boolean') return value;
 
   // 四舍五入
