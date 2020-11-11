@@ -25,47 +25,6 @@
     }
     ```
 
-## Variables
-
-  <a name="13.4"></a>
-  <a name="variables--define-where-used"></a>
-  - [13.4](#variables--define-where-used) 在你需要的地方声明变量，但是要放在合理的位置
-
-    ```javascript
-    // bad - unnecessary function call
-    function checkName(hasName) {
-      const name = getName();
-
-      if (hasName === 'test') {
-        return false;
-      }
-
-      if (name === 'test') {
-        this.setName('');
-        return false;
-      }
-
-      return name;
-    }
-
-    // good
-    function checkName(hasName) {
-      if (hasName === 'test') {
-        return false;
-      }
-
-      // 在需要的时候分配
-      const name = getName();
-
-      if (name === 'test') {
-        this.setName('');
-        return false;
-      }
-
-      return name;
-    }
-    ```  
-
 ## Comparison Operators & Equality
 
   <a name="15.2"></a>
@@ -126,24 +85,6 @@
     }
     ```
 
-  <a name="15.7"></a>
-  <a name="comparison--unneeded-ternary"></a>
-  - [15.7](#comparison--unneeded-ternary) 避免不需要的三元表达式
-
-    eslint rules: [`no-unneeded-ternary`](http://eslint.org/docs/rules/no-unneeded-ternary.html).
-
-    ```javascript
-    // bad
-    const foo = a ? a : b;
-    const bar = c ? true : false;
-    const baz = c ? false : true;
-
-    // good
-    const foo = a || b;
-    const bar = !!c;
-    const baz = !c;
-    ```
-
 ## Control Statements
 
   <a name="17.1"></a>
@@ -168,175 +109,55 @@
     }
     ```
 
-## Comments
+## Accessors
 
-  <a name="18.3"></a>
-  <a name="comments--spaces"></a>
-  - [18.3](#comments--spaces) 所有注释开头空一个，方便阅读。 eslint: [`spaced-comment`](http://eslint.org/docs/rules/spaced-comment)
+  <a name="24.3"></a>
+  <a name="accessors--boolean-prefix"></a>
+  - [24.3](#accessors--boolean-prefix) 如果属性/方法是`boolean`， 用 `isVal()` 或 `hasVal()`
 
     ```javascript
     // bad
-    //is current tab
-    const active = true;
-
-    // good
-    // is current tab
-    const active = true;
-
-    // bad
-    /**
-     *make() returns a new element
-     *based on the passed-in tag name
-     */
-    function make(tag) {
-
-      // ...
-
-      return element;
+    if (!dragon.age()) {
+      return false;
     }
 
     // good
-    /**
-     * make() returns a new element
-     * based on the passed-in tag name
-     */
-    function make(tag) {
-
-      // ...
-
-      return element;
+    if (!dragon.hasAge()) {
+      return false;
     }
     ```
 
-## Whitespace
+## Standard Library
 
-  <a name="19.1"></a>
-  <a name="whitespace--spaces"></a>
-  - [19.1](#whitespace--spaces) tab用两个空格. eslint: [`indent`](http://eslint.org/docs/rules/indent.html)
+  <a name="29.1"></a>
+  <a name="standard-library--isnan"></a>
+  - [29.1](#standard-library--isnan) 用 `Number.isNaN` 代替全局的 `isNaN`.
+    eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
+
+    > Why? 全局 `isNaN` 强制把非数字转成数字， 然后对于任何强转后为 `NaN` 的变量都返回 `true`
+    > 如果你想用这个功能，就显式的用它。
 
     ```javascript
     // bad
-    function foo() {
-    ∙∙∙∙const name;
-    }
-
-    // bad
-    function bar() {
-    ∙const name;
-    }
+    isNaN('1.2'); // false
+    isNaN('1.2.3'); // true
 
     // good
-    function baz() {
-    ∙∙const name;
-    }
+    Number.isNaN('1.2'); // false
+    Number.isNaN('1.2.3'); // false
     ```
 
-  <a name="19.2"></a>
-  <a name="whitespace--before-blocks"></a>
-  - [19.2](#whitespace--before-blocks) 在大括号前空一格。 eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html)
+  <a name="29.2"></a>
+  <a name="standard-library--isfinite"></a>
+  - [29.2](#standard-library--isfinite) 用 `Number.isFinite` 代替 `isFinite`.
+    eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
+
+    > Why? 理由同上，会把一个非数字变量强转成数字，然后做判断。
 
     ```javascript
     // bad
-    function test(){
-      console.log('test');
-    }
+    isFinite('2e3'); // true
 
     // good
-    function test() {
-      console.log('test');
-    }
-
-    // bad
-    dog.set('attr',{
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
-    });
-
-    // good
-    dog.set('attr', {
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
-    });
-    ```
-
-  <a name="19.3"></a>
-  <a name="whitespace--around-keywords"></a>
-  - [19.3](#whitespace--around-keywords) 在控制语句(`if`, `while` 等)的圆括号前空一格。在函数调用和定义时，参数列表和函数名之间不空格。 eslint: [`keyword-spacing`](http://eslint.org/docs/rules/keyword-spacing.html)
-
-    ```javascript
-    // bad
-    if(isJedi) {
-      fight ();
-    }
-
-    // good
-    if (isJedi) {
-      fight();
-    }
-
-    // bad
-    function fight () {
-      console.log ('Swooosh!');
-    }
-
-    // good
-    function fight() {
-      console.log('Swooosh!');
-    }
-    ```
-
-  <a name="19.4"></a>
-  <a name="whitespace--infix-ops"></a>
-  - [19.4](#whitespace--infix-ops) 用空格来隔开运算符。 eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html)
-
-    ```javascript
-    // bad
-    const x=y+5;
-
-    // good
-    const x = y + 5;
-    ```
-
-  <a name="19.9"></a>
-  <a name="whitespace--no-multiple-blanks"></a>
-  - [19.9](#whitespace--no-multiple-blanks)不要在代码之间使用多个空白行填充。 eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
-
-  <a name="19.10"></a>
-  <a name="whitespace--in-parens"></a>
-  - [19.10](#whitespace--in-parens) 圆括号里不要加空格。 eslint: [`space-in-parens`](http://eslint.org/docs/rules/space-in-parens.html)
-
-    ```javascript
-    // bad
-    function bar( foo ) {
-      return foo;
-    }
-
-    // good
-    function bar(foo) {
-      return foo;
-    }
-
-    // bad
-    if ( foo ) {
-      console.log(foo);
-    }
-
-    // good
-    if (foo) {
-      console.log(foo);
-    }
-    ```
-
-  <a name="19.11"></a>
-  <a name="whitespace--in-brackets"></a>
-  - [19.11](#whitespace--in-brackets) 方括号里不要加空格。看示例。 eslint: [`array-bracket-spacing`](http://eslint.org/docs/rules/array-bracket-spacing.html)
-
-    ```javascript
-    // bad
-    const foo = [ 1, 2, 3 ];
-    console.log(foo[ 0 ]);
-
-    // good， 逗号分隔符还是要空格的
-    const foo = [1, 2, 3];
-    console.log(foo[0]);
+    Number.isFinite('2e3'); // false
     ```
