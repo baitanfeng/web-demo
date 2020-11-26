@@ -5,22 +5,28 @@
  */
 function numberOfSubstrings(s) {
   const len = s.length;
-  const chars = new Array(100).fill(0);
+  const charMap = new Map([
+    ['a', 0],
+    ['b', 0],
+    ['c', 0]
+  ]);
   let ans = 0;
 
   for (let i = 0, j = 0; i < len; i++) {
     if (i > 0) {
-      chars[s[i - 1].charCodeAt()]--;
+      const beforeFirstChar = s[i - 1];
+      charMap.set(beforeFirstChar, charMap.get(beforeFirstChar) - 1);
     }
 
-    if (checkChar(chars)) {
+    if (checkChar(charMap)) {
       ans += len - j + 1;
       continue;
     }
 
     while(j < len) {
-      chars[s[j].charCodeAt()]++;
-      if (checkChar(chars)) {
+      const char = s[j];
+      charMap.set(char, charMap.get(char) + 1);
+      if (checkChar(charMap)) {
         ans += len - j;
         j++;
         break;
@@ -32,10 +38,10 @@ function numberOfSubstrings(s) {
   return ans;
 }
 
-function checkChar(chars) {
-  return chars[97] > 0
-    && chars[98] > 0
-    && chars[99] > 0;
+function checkChar(charMap = new Map()) {
+  return charMap.get('a') > 0
+    && charMap.get('b') > 0
+    && charMap.get('c') > 0;
 }
 
 console.log(numberOfSubstrings('abcabc'));
