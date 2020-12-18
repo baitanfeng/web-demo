@@ -1,6 +1,6 @@
 <template>
   <div class="App">
-    <keep-alive :include="/^KeepAlive/">
+    <keep-alive :include="$store.state.cachedComponents">
       <router-view></router-view>
     </keep-alive>
   </div>

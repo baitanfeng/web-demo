@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router';
+import store from './store';
 // import Toast from './base/toast';
 import './base/toast';
 
@@ -18,6 +19,7 @@ Vue.use(ElementUI);
 // Vue.use(Loading);
 
 window.vm = new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount('#app')

@@ -2,13 +2,13 @@
   <div class="home">
     <h2>home</h2>
 
-    <button @click="handleButtonClick">go about</button>
+    <button @click="handleAboutClick">go about</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'KeepAliveHome',
+  name: 'Home',
   created() {
     console.log('home created');
   },
@@ -25,11 +25,14 @@ export default {
     console.log('home destroyed');
   },
   methods: {
-    handleButtonClick() {
+    handleAboutClick() {
       this.$router.push({
         name: 'about',
       });
     },
+    handleDblClick() {
+      console.log('handleDblClick');
+    }
   },
 };
 </script>
