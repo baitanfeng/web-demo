@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail">
     <h2>detail</h2>
     <button @click="$router.back()">go back</button>
   </div>
@@ -23,5 +23,11 @@ export default {
   destroyed() {
     console.log('detail destroyed');
   },
-}
+};
 </script>
+
+<style scoped>
+.detail {
+  height: 500vh;
+}
+</style>

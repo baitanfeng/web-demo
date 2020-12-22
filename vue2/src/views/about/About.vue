@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="about">
     <h2>about</h2>
     <button @click="handleDetailClick">go detail</button>
     <button @click="$router.back()">go back</button>
@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'About',
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     // eslint-disable-next-line
     console.log('about beforeRouteLeave');
     if (to.path === '/') {
@@ -37,15 +37,18 @@ export default {
     console.log('about destroyed');
   },
   methods: {
-    ...mapMutations([
-      'addCachedComponent',
-      'removeCachedComponent'
-    ]),
+    ...mapMutations(['addCachedComponent', 'removeCachedComponent']),
     handleDetailClick() {
       this.$router.push({
         name: 'detail',
       });
-    }
+    },
   },
-}
+};
 </script>
+
+<style scoped>
+.about {
+  height: 400vh;
+}
+</style>

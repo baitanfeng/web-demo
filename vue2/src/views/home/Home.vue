@@ -32,9 +32,13 @@ export default {
     },
     handleDblClick() {
       console.log('handleDblClick');
-    }
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.home {
+  height: 300vh;
+}
+</style>

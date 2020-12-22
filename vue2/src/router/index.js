@@ -12,33 +12,35 @@ const router = new VueRouter({
       name: 'home',
       component: () => import('../views/home/Home.vue'),
       meta: {
-        keepAlive: true
-      }
+        keepAlive: true,
+      },
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('../views/about/About.vue'),
       meta: {
-        keepAlive: true
-      }
+        keepAlive: true,
+      },
     },
     {
       path: '/detail',
       name: 'detail',
       component: () => import('../views/detail/Detail.vue'),
       meta: {
-        keepAlive: false
-      }
+        keepAlive: false,
+      },
     },
   ],
-  scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { x: 0, y: 0 }
-    }
-  }
+  // scrollBehavior(to, from, savedPosition) {
+  //   // eslint-disable-next-line
+  //   // debugger;
+  //   if (savedPosition) {
+  //     return savedPosition;
+  //   } else {
+  //     return { x: 0, y: 0 };
+  //   }
+  // },
 });
 
 export default router;
