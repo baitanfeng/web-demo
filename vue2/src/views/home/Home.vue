@@ -2,7 +2,10 @@
   <div class="home">
     <h2>home</h2>
 
-    <button @click="handleAboutClick">go about</button>
+    <van-button>button</van-button>
+    <van-button block>button</van-button>
+    <van-search maxlength="2"></van-search>
+    <van-field v-model="value" :formatter="formatter"></van-field></van-field>
   </div>
 </template>
 
@@ -25,6 +28,9 @@ export default {
     console.log('home destroyed');
   },
   methods: {
+    formatter(value) {
+      return value.replace(/\d/g, '');
+    },
     handleAboutClick() {
       this.$router.push({
         name: 'about',
