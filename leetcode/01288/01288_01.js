@@ -39,8 +39,6 @@ function removeCoveredIntervals(intervals) {
   return len - count;
 }
 
-[1, 4], [2, 8], [3, 6];
-
 console.log(
   removeCoveredIntervals([
     [1, 4],
