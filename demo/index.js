@@ -1,28 +1,32 @@
 /**
- * @param {number[]} A
- * @param {number} K
- * @return {number}
+ * @param {string} s
+ * @return {string[][]}
  */
-const minKBitFlips = function (A, K) {
-  const n = A.length;
-  const diff = new Array(n + 1).fill(0);
-  let ans = 0;
-  let revCnt = 0;
+const partition = function (s) {
+  const dfs = (i) => {
+    if (i === len) {
+      ret.push(ans.slice());
+      return;
+    }
+    for (let j = i; j < len; ++j) {
+      if (dp[i][j]) {
+        ans.push(s.slice(i, j + 1));
+        dfs(j + 1);
+        ans.pop();
+      }
+    }
+  };
 
-  for (let i = 0; i < n; i++) {
-    revCnt += diff[i];
-    if ((A[i] + revCnt) % 2 === 0) {
-      if (i + K > n) return -1;
+  const len = s.length;
+  const dp = new Array(len).fill(0).map(() => new Array(len).fill(true));
+  let ret = [],
+    ans = [];
 
-      ans++;
-      revCnt++;
-      diff[i + K]--;
+  for (let i = len - 1; i >= 0; i--) {
+    for (let j = i + 1; j < len; j++) {
+      dp[i][j] = s[i] === s[j] && dp[i + 1][j - 1];
     }
   }
-
-  return ans;
+  dfs(0);
+  return ret;
 };
-
-console.log(minKBitFlips([0, 1, 0], 1));
-console.log(minKBitFlips([1, 1, 0], 2));
-console.log(minKBitFlips([0, 0, 0, 1, 0, 1, 1, 0], 3));
