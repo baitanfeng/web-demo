@@ -1,32 +1,40 @@
 /**
- * @param {string} s
- * @return {string[][]}
+ * @param {number[]} prices
+ * @return {number}
  */
-const partition = function (s) {
-  const dfs = (i) => {
-    if (i === len) {
-      ret.push(ans.slice());
-      return;
-    }
-    for (let j = i; j < len; ++j) {
-      if (dp[i][j]) {
-        ans.push(s.slice(i, j + 1));
-        dfs(j + 1);
-        ans.pop();
-      }
-    }
-  };
+const maxProfit = function (prices) {
+  if (prices.length === 0) return 0;
 
-  const len = s.length;
-  const dp = new Array(len).fill(0).map(() => new Array(len).fill(true));
-  let ret = [],
-    ans = [];
+  const len = prices.length;
+  const f = new Array(len).fill(0).map((item) => (item = new Array(3).fill(0)));
+  f[0][0] = -prices[0];
 
-  for (let i = len - 1; i >= 0; i--) {
-    for (let j = i + 1; j < len; j++) {
-      dp[i][j] = s[i] === s[j] && dp[i + 1][j - 1];
-    }
+  for (let i = 1; i < len; i++) {
+    f[i][0] = Math.max(f[i - 1][0], f[i - 1][2] - prices[i]);
+    f[i][1] = f[i - 1][0] + prices[i];
+    f[i][2] = Math.max(f[i - 1][1], f[i - 1][2]);
   }
-  dfs(0);
-  return ret;
+
+  return Math.max(f[len - 1][1], f[len - 1][2]);
 };
+
+// longhand
+if (type === 1) {
+  func1();
+} else if (type === 2) {
+  func2();
+} else if (type === 3) {
+  func3();
+} else {
+  throw new Error(`Invalid value: ${type}`);
+}
+
+// shorthand
+const types = {
+  1: func1,
+  2: func2,
+  3: func3,
+};
+const func = types[type];
+!func && throw new Error(`Invalid value: ${type}`);
+func();
